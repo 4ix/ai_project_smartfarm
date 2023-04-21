@@ -8,3 +8,9 @@
 ```bash
 flutter create smartfarm
 ```
+
+- 기본 color palettes
+- BBD6B8
+- AEC2B6
+- 94AF9F
+- DBE4C6
