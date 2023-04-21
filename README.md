@@ -4,13 +4,18 @@
 
 ## 진행사항
 ### 2023-04-21(금)
+- 기본 color palettes
+- 0XFFBBD6B8
+- 0XFFAEC2B6
+- 0XFF94AF9F
+- 0XFFDBE4C6
+
 - 플러터 프로젝트 생성
 ```bash
 flutter create smartfarm
 ```
-
-- 기본 color palettes
-- BBD6B8
-- AEC2B6
-- 94AF9F
-- DBE4C6
+- UI 구현
+1. menu_drawer (농장선택)
+2. menu_bottom (하단 메뉴)
+3. login_screen (로그인 화면)
+4. home_screen (로그인 후 최초 화면)
