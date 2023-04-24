@@ -5,8 +5,11 @@
 ## 진행사항
 - UI 구현
 1. change_password_screen (비밀번호 변경)
-2. external_sensor_screen (외부 환경)
-3. internal_sensor_screen (내부 환경)
+2. sensor_screen ()
+* external_sensor_screen (외부 환경)
+* internal_sensor_screen (내부 환경)
+3. controller_screen (환경 제어)
+* controller_dashboard_screen (환경 제어 대시보드)
 
 ### 2023-04-21(금)
 - 기본 color palettes

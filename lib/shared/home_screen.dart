@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:smartfarm/screens/sensor_screen.dart';
+import 'package:smartfarm/screens/controler_screen.dart';
+import 'package:smartfarm/screens/soil_screen.dart';
+import 'package:smartfarm/screens/cctv_screen.dart';
 
 import 'menu_drawer.dart';
-import '../screens/controler_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,6 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _widgetOptions = <Widget>[
     const SensorScreen(),
     const ControlerScreen(),
+    const SoilScreen(),
+    const CctvScreen(),
   ];
 
   void _onItemTapped(int index) {
