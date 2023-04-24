@@ -3,6 +3,10 @@
 - 스마트팜 관련 프론트엔드 구현
 
 ## 진행사항
+- UI 구현
+1. change_password_screen (비밀번호 변경)
+
+
 ### 2023-04-21(금)
 - 기본 color palettes
 - 0XFFBBD6B8
