@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartfarm/screens/change_password_screen.dart';
-import 'package:smartfarm/screens/home_screen.dart';
+import 'package:smartfarm/shared/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
