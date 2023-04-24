@@ -5,7 +5,7 @@
 ## 진행사항
 - UI 구현
 1. change_password_screen (비밀번호 변경)
-
+2. external_sensor_screen (외부 환경)
 
 ### 2023-04-21(금)
 - 기본 color palettes

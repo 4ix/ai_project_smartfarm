@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool _expanded1 = true;
+  bool _expanded2 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +53,36 @@ class _HomeScreenState extends State<HomeScreen> {
                 body: const ExternalSensor(),
                 isExpanded: _expanded1,
               ),
+              ExpansionPanel(
+                backgroundColor: const Color(0XFFAEC2B6),
+                headerBuilder: (context, isExpanded) {
+                  return const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      '내부 환경',
+                      style: TextStyle(
+                        color: Color(0XFFDBE4C6),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  );
+                },
+                body: const ExternalSensor(),
+                isExpanded: _expanded2,
+              ),
             ],
             expansionCallback: (panelIndex, isExpanded) {
-              setState(() {
-                _expanded1 = !_expanded1;
-              });
+              if (panelIndex == 0) {
+                setState(() {
+                  _expanded1 = !_expanded1;
+                });
+              }
+              if (panelIndex == 1) {
+                setState(() {
+                  _expanded2 = !_expanded2;
+                });
+              }
             },
           ),
         ),

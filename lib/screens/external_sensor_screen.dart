@@ -81,7 +81,7 @@ class ExternalSensor extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    '62.3 ℃',
+                                    '62.3 %',
                                     style: TextStyle(
                                       fontSize: 18,
                                       color: Color(0XFF94AF9F),
