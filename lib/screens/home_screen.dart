@@ -3,6 +3,7 @@ import 'package:smartfarm/shared/menu_drawer.dart';
 
 import '../shared/menu_bottom.dart';
 import 'external_sensor_screen.dart';
+import 'internal_sensor_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -68,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   );
                 },
-                body: const ExternalSensor(),
+                body: const InternalSensor(),
                 isExpanded: _expanded2,
               ),
             ],
