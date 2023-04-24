@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartfarm/screens/graph_screen.dart';
 import 'package:smartfarm/shared/menu_drawer.dart';
 
 import '../shared/menu_bottom.dart';
@@ -15,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool _expanded1 = true;
   bool _expanded2 = false;
+  bool _expanded3 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 backgroundColor: const Color(0XFFAEC2B6),
                 headerBuilder: (context, isExpanded) {
                   return const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    padding: EdgeInsets.all(10),
                     child: Text(
-                      '외부 환경',
+                      '외부환경',
                       style: TextStyle(
                         color: Color(0XFFDBE4C6),
                         fontSize: 20,
@@ -58,9 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 backgroundColor: const Color(0XFFAEC2B6),
                 headerBuilder: (context, isExpanded) {
                   return const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    padding: EdgeInsets.all(10),
                     child: Text(
-                      '내부 환경',
+                      '내부환경',
                       style: TextStyle(
                         color: Color(0XFFDBE4C6),
                         fontSize: 20,
@@ -72,6 +74,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 body: const InternalSensor(),
                 isExpanded: _expanded2,
               ),
+              ExpansionPanel(
+                backgroundColor: const Color(0XFFAEC2B6),
+                headerBuilder: (context, isExpanded) {
+                  return const Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      '그래프',
+                      style: TextStyle(
+                        color: Color(0XFFDBE4C6),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  );
+                },
+                body: const GraphScreen(),
+                isExpanded: _expanded3,
+              ),
             ],
             expansionCallback: (panelIndex, isExpanded) {
               if (panelIndex == 0) {
@@ -82,6 +102,11 @@ class _HomeScreenState extends State<HomeScreen> {
               if (panelIndex == 1) {
                 setState(() {
                   _expanded2 = !_expanded2;
+                });
+              }
+              if (panelIndex == 2) {
+                setState(() {
+                  _expanded3 = !_expanded3;
                 });
               }
             },
