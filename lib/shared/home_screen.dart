@@ -8,7 +8,12 @@ import 'settings_screen.dart';
 import 'menu_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+    required this.userIndex,
+  });
+
+  final int userIndex;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -53,7 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: _widgetOptions[_selectedIndex],
-      drawer: const MenuDrawer(),
+      drawer: MenuDrawer(
+        userIndex: widget.userIndex,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: const Color(0xFFDBE4C6),
         type: BottomNavigationBarType.fixed,
