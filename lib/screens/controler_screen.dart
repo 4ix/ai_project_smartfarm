@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartfarm/screens/etc_controller_screen.dart';
 
 import 'controller_dashboard_screen.dart';
 
@@ -38,7 +39,7 @@ class _ControlerScreenState extends State<ControlerScreen> {
                       ),
                     );
                   },
-                  body: const Text('기타 제어'),
+                  body: const EtcControllerScreen(),
                   isExpanded: _expanded1,
                 ),
               ],
