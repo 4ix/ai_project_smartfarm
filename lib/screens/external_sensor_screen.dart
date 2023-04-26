@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartfarm/models/external_model.dart';
+import '../models/colors_model.dart';
 import '../services/api_service.dart';
 
 class ExternalSensor extends StatefulWidget {
@@ -72,7 +73,7 @@ class ExternalWidget extends StatelessWidget {
                         width: 150,
                         height: 71,
                         decoration: const BoxDecoration(
-                          color: Color(0XFFDBE4C6),
+                          color: ColorsModel.fourth,
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -86,14 +87,14 @@ class ExternalWidget extends StatelessWidget {
                                     '외부 온도',
                                     style: TextStyle(
                                       fontSize: 20,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                   Text(
                                     '${externalSnapshot.data![0].temperature} ℃',
                                     style: const TextStyle(
                                       fontSize: 18,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                 ],
@@ -101,7 +102,7 @@ class ExternalWidget extends StatelessWidget {
                               const Icon(
                                 Icons.device_thermostat_outlined,
                                 size: 50,
-                                color: Color(0XFF94AF9F),
+                                color: ColorsModel.third,
                               ),
                             ],
                           ),
@@ -114,7 +115,7 @@ class ExternalWidget extends StatelessWidget {
                         width: 150,
                         height: 71,
                         decoration: const BoxDecoration(
-                          color: Color(0XFFDBE4C6),
+                          color: ColorsModel.fourth,
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -128,14 +129,14 @@ class ExternalWidget extends StatelessWidget {
                                     '외부 습도',
                                     style: TextStyle(
                                       fontSize: 20,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                   Text(
                                     '${externalSnapshot.data![0].humidity} %',
                                     style: const TextStyle(
                                       fontSize: 18,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                 ],
@@ -143,7 +144,7 @@ class ExternalWidget extends StatelessWidget {
                               const Icon(
                                 Icons.water_drop_outlined,
                                 size: 50,
-                                color: Color(0XFF94AF9F),
+                                color: ColorsModel.third,
                               ),
                             ],
                           ),
@@ -161,7 +162,7 @@ class ExternalWidget extends StatelessWidget {
                         width: 150,
                         height: 71,
                         decoration: const BoxDecoration(
-                          color: Color(0XFFDBE4C6),
+                          color: ColorsModel.fourth,
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -175,14 +176,14 @@ class ExternalWidget extends StatelessWidget {
                                     '날씨',
                                     style: TextStyle(
                                       fontSize: 20,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                   Text(
                                     '${externalSnapshot.data![0].weather}',
                                     style: const TextStyle(
                                       fontSize: 18,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                 ],
@@ -190,7 +191,7 @@ class ExternalWidget extends StatelessWidget {
                               Icon(
                                 iconData,
                                 size: 50,
-                                color: const Color(0XFF94AF9F),
+                                color: ColorsModel.third,
                               ),
                             ],
                           ),
@@ -203,7 +204,7 @@ class ExternalWidget extends StatelessWidget {
                         width: 150,
                         height: 71,
                         decoration: const BoxDecoration(
-                          color: Color(0XFFDBE4C6),
+                          color: ColorsModel.fourth,
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -217,14 +218,14 @@ class ExternalWidget extends StatelessWidget {
                                     '풍향',
                                     style: TextStyle(
                                       fontSize: 20,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                   Text(
                                     '${externalSnapshot.data![0].wind_direction}',
                                     style: const TextStyle(
                                       fontSize: 18,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                 ],
@@ -232,7 +233,7 @@ class ExternalWidget extends StatelessWidget {
                               const Icon(
                                 Icons.assistant_navigation,
                                 size: 50,
-                                color: Color(0XFF94AF9F),
+                                color: ColorsModel.third,
                               ),
                             ],
                           ),
@@ -250,7 +251,7 @@ class ExternalWidget extends StatelessWidget {
                         width: 150,
                         height: 71,
                         decoration: const BoxDecoration(
-                          color: Color(0XFFDBE4C6),
+                          color: ColorsModel.fourth,
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -264,14 +265,14 @@ class ExternalWidget extends StatelessWidget {
                                     '풍속',
                                     style: TextStyle(
                                       fontSize: 20,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                   Text(
                                     '${externalSnapshot.data![0].wind_speed} m/s',
                                     style: const TextStyle(
                                       fontSize: 18,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                 ],
@@ -279,7 +280,7 @@ class ExternalWidget extends StatelessWidget {
                               const Icon(
                                 Icons.wind_power_outlined,
                                 size: 50,
-                                color: Color(0XFF94AF9F),
+                                color: ColorsModel.third,
                               ),
                             ],
                           ),
@@ -292,7 +293,7 @@ class ExternalWidget extends StatelessWidget {
                       //   width: 150,
                       //   height: 71,
                       //   decoration: const BoxDecoration(
-                      //     color: Color(0XFFDBE4C6),
+                      //     color: ColorsModel.fourth,
                       //   ),
                       //   child: const Padding(
                       //     padding: EdgeInsets.all(8.0),
@@ -306,14 +307,14 @@ class ExternalWidget extends StatelessWidget {
                       //               '일사량',
                       //               style: TextStyle(
                       //                 fontSize: 20,
-                      //                 color: Color(0XFF94AF9F),
+                      //                 color: ColorsModel.third,
                       //               ),
                       //             ),
                       //             Text(
                       //               '0 W/㎡',
                       //               style: TextStyle(
                       //                 fontSize: 18,
-                      //                 color: Color(0XFF94AF9F),
+                      //                 color: ColorsModel.third,
                       //               ),
                       //             ),
                       //           ],
@@ -321,7 +322,7 @@ class ExternalWidget extends StatelessWidget {
                       //         Icon(
                       //           Icons.wb_sunny_outlined,
                       //           size: 50,
-                      //           color: Color(0XFF94AF9F),
+                      //           color: ColorsModel.third,
                       //         ),
                       //       ],
                       //     ),

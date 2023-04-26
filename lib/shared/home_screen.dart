@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:smartfarm/models/colors_model.dart';
 import 'package:smartfarm/screens/sensor_screen.dart';
 import 'package:smartfarm/screens/controler_screen.dart';
 import 'package:smartfarm/screens/soil_screen.dart';
 import 'package:smartfarm/screens/cctv_screen.dart';
 
-import 'settings_screen.dart';
+import '../screens/settings_screen.dart';
 import 'menu_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -38,11 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFBBD6B8),
+      backgroundColor: ColorsModel.first,
       appBar: AppBar(
         title: const Text('스마트 팜'),
-        backgroundColor: const Color(0xFF94AF9F),
-        foregroundColor: const Color(0xFFDBE4C6),
+        backgroundColor: ColorsModel.third,
+        foregroundColor: ColorsModel.fourth,
         actions: [
           IconButton(
             onPressed: () {
@@ -62,9 +63,9 @@ class _HomeScreenState extends State<HomeScreen> {
         userIndex: widget.userIndex,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: const Color(0xFFDBE4C6),
+        selectedItemColor: ColorsModel.fourth,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color(0xFFAEC2B6),
+        backgroundColor: ColorsModel.second,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.device_thermostat_outlined),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../models/colors_model.dart';
+
 class WarningSetting extends StatefulWidget {
   const WarningSetting({super.key});
 
@@ -17,7 +19,7 @@ class _WarningSettingState extends State<WarningSetting> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(color: Color(0XFFAEC2B6)),
+      decoration: const BoxDecoration(color: ColorsModel.second),
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -28,7 +30,7 @@ class _WarningSettingState extends State<WarningSetting> {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
-                color: Color(0XFFDBE4C6),
+                color: ColorsModel.fourth,
               ),
             ),
             const SizedBox(
@@ -41,12 +43,12 @@ class _WarningSettingState extends State<WarningSetting> {
                   '경보 활성화',
                   style: TextStyle(
                     fontSize: 20,
-                    color: Color(0XFFDBE4C6),
+                    color: ColorsModel.fourth,
                   ),
                 ),
                 Switch(
-                  activeColor: const Color(0XFF94AF9F),
-                  inactiveThumbColor: const Color(0XFFAEC2B6),
+                  activeColor: ColorsModel.third,
+                  inactiveThumbColor: ColorsModel.second,
                   value: _isChecked1,
                   onChanged: (value) {
                     setState(
@@ -65,7 +67,7 @@ class _WarningSettingState extends State<WarningSetting> {
                   '고온 경보',
                   style: TextStyle(
                     fontSize: 20,
-                    color: Color(0XFFDBE4C6),
+                    color: ColorsModel.fourth,
                   ),
                 ),
                 DropdownButton(
@@ -93,7 +95,7 @@ class _WarningSettingState extends State<WarningSetting> {
                   '저온 경보',
                   style: TextStyle(
                     fontSize: 20,
-                    color: Color(0XFFDBE4C6),
+                    color: ColorsModel.fourth,
                   ),
                 ),
                 DropdownButton(

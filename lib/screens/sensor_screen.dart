@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartfarm/models/colors_model.dart';
 import 'package:smartfarm/screens/graph_screen.dart';
 
 import 'external_sensor_screen.dart';
@@ -19,21 +20,21 @@ class _SensorScreenState extends State<SensorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFBBD6B8),
+      backgroundColor: ColorsModel.first,
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: SingleChildScrollView(
           child: ExpansionPanelList(
             children: [
               ExpansionPanel(
-                backgroundColor: const Color(0XFFAEC2B6),
+                backgroundColor: ColorsModel.second,
                 headerBuilder: (context, isExpanded) {
                   return const Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
                       '외부환경',
                       style: TextStyle(
-                        color: Color(0XFFDBE4C6),
+                        color: ColorsModel.fourth,
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                       ),
@@ -44,14 +45,14 @@ class _SensorScreenState extends State<SensorScreen> {
                 isExpanded: _expanded1,
               ),
               ExpansionPanel(
-                backgroundColor: const Color(0XFFAEC2B6),
+                backgroundColor: ColorsModel.second,
                 headerBuilder: (context, isExpanded) {
                   return const Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
                       '내부환경',
                       style: TextStyle(
-                        color: Color(0XFFDBE4C6),
+                        color: ColorsModel.fourth,
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                       ),
@@ -62,14 +63,14 @@ class _SensorScreenState extends State<SensorScreen> {
                 isExpanded: _expanded2,
               ),
               ExpansionPanel(
-                backgroundColor: const Color(0XFFAEC2B6),
+                backgroundColor: ColorsModel.second,
                 headerBuilder: (context, isExpanded) {
                   return const Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
                       '그래프',
                       style: TextStyle(
-                        color: Color(0XFFDBE4C6),
+                        color: ColorsModel.fourth,
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                       ),

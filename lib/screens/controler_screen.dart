@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartfarm/models/colors_model.dart';
 import 'package:smartfarm/screens/etc_controller_screen.dart';
 
 import 'controller_dashboard_screen.dart';
@@ -16,7 +17,7 @@ class _ControlerScreenState extends State<ControlerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFBBD6B8),
+      backgroundColor: ColorsModel.first,
       body: Column(
         children: [
           const ControllerDashboard(),
@@ -25,14 +26,14 @@ class _ControlerScreenState extends State<ControlerScreen> {
             child: ExpansionPanelList(
               children: [
                 ExpansionPanel(
-                  backgroundColor: const Color(0XFFAEC2B6),
+                  backgroundColor: ColorsModel.second,
                   headerBuilder: (context, isExpanded) {
                     return const Padding(
                       padding: EdgeInsets.all(10),
                       child: Text(
                         '기타 제어',
                         style: TextStyle(
-                          color: Color(0XFFDBE4C6),
+                          color: ColorsModel.fourth,
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
                         ),

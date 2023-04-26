@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../models/colors_model.dart';
 import '../models/users_model.dart';
 import '../services/api_service.dart';
 
@@ -50,7 +51,7 @@ class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: const Color(0xFFBBD6B8),
+      backgroundColor: ColorsModel.first,
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -63,7 +64,7 @@ class DrawerWidget extends StatelessWidget {
             accountName: Text(
               userSnapshot.data![userIndex].username,
               style: const TextStyle(
-                color: Color(0xFFDBE4C6),
+                color: ColorsModel.fourth,
                 fontSize: 24,
                 fontWeight: FontWeight.w600,
               ),
@@ -71,12 +72,12 @@ class DrawerWidget extends StatelessWidget {
             accountEmail: Text(
               userSnapshot.data![userIndex].email,
               style: const TextStyle(
-                color: Color(0xFFDBE4C6),
+                color: ColorsModel.fourth,
                 fontSize: 16,
               ),
             ),
             decoration: const BoxDecoration(
-              color: Color(0xFF94AF9F),
+              color: ColorsModel.third,
             ),
           ),
           ListTile(

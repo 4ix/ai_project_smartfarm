@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartfarm/models/colors_model.dart';
 import 'package:smartfarm/screens/soil_dashboard_screen.dart';
 
 class SoilScreen extends StatelessWidget {
@@ -7,7 +8,7 @@ class SoilScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Color(0xFFBBD6B8),
+      backgroundColor: ColorsModel.first,
       body: Column(
         children: [SoilDashboard()],
       ),

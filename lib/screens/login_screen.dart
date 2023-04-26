@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartfarm/models/colors_model.dart';
 import 'package:smartfarm/models/users_model.dart';
 import 'package:smartfarm/shared/change_password_screen.dart';
 import 'package:smartfarm/shared/home_screen.dart';
@@ -21,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFBBD6B8),
+      backgroundColor: ColorsModel.first,
       body: FutureBuilder(
         future: users,
         builder: (context, snapshot) {
@@ -80,7 +81,7 @@ class LoginWidget extends StatelessWidget {
                         decoration: const InputDecoration(
                           icon: Material(
                             elevation: 5.0,
-                            color: Color(0xFFAEC2B6),
+                            color: ColorsModel.second,
                             child: Icon(
                               Icons.person,
                               color: Colors.white,
@@ -90,7 +91,7 @@ class LoginWidget extends StatelessWidget {
                           hintText: 'ID',
                           border: OutlineInputBorder(),
                           filled: true,
-                          fillColor: Color(0xFFDBE4C6),
+                          fillColor: ColorsModel.fourth,
                         ),
                         keyboardType: TextInputType.text,
                       ),
@@ -102,7 +103,7 @@ class LoginWidget extends StatelessWidget {
                         decoration: const InputDecoration(
                           icon: Material(
                             elevation: 5.0,
-                            color: Color(0xFFAEC2B6),
+                            color: ColorsModel.second,
                             child: Icon(
                               Icons.lock,
                               color: Colors.white,
@@ -112,7 +113,7 @@ class LoginWidget extends StatelessWidget {
                           hintText: 'password',
                           border: OutlineInputBorder(),
                           filled: true,
-                          fillColor: Color(0xFFDBE4C6),
+                          fillColor: ColorsModel.fourth,
                         ),
                         keyboardType: TextInputType.text,
                         obscureText: true,
@@ -167,14 +168,14 @@ class LoginWidget extends StatelessWidget {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF94AF9F),
+                    backgroundColor: ColorsModel.third,
                     minimumSize: const Size.fromHeight(50),
                   ),
                   child: const Text(
                     '로그인',
                     style: TextStyle(
                       fontSize: 30,
-                      color: Color(0xFFDBE4C6),
+                      color: ColorsModel.fourth,
                     ),
                   ),
                 ),
@@ -190,7 +191,7 @@ class LoginWidget extends StatelessWidget {
 void showSnackBar(BuildContext context, text) {
   final snackBar = SnackBar(
     content: text,
-    backgroundColor: const Color(0xFF94AF9F),
+    backgroundColor: ColorsModel.third,
   );
 
   ScaffoldMessenger.of(context).showSnackBar(snackBar);

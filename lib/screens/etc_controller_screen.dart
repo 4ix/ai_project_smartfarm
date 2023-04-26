@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../models/colors_model.dart';
+
 class EtcControllerScreen extends StatefulWidget {
   const EtcControllerScreen({super.key});
 
@@ -21,7 +23,7 @@ class _EtcControllerScreenState extends State<EtcControllerScreen> {
           child: Column(
             children: [
               Container(
-                decoration: const BoxDecoration(color: Color(0XFFDBE4C6)),
+                decoration: const BoxDecoration(color: ColorsModel.fourth),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -31,13 +33,13 @@ class _EtcControllerScreenState extends State<EtcControllerScreen> {
                         '환풍기 세기',
                         style: TextStyle(
                           fontSize: 20,
-                          color: Color(0XFF94AF9F),
+                          color: ColorsModel.third,
                         ),
                       ),
                     ),
                     Switch(
-                      activeColor: const Color(0XFF94AF9F),
-                      inactiveThumbColor: const Color(0XFFAEC2B6),
+                      activeColor: ColorsModel.third,
+                      inactiveThumbColor: ColorsModel.second,
                       value: _isChecked1,
                       onChanged: (value) {
                         setState(
@@ -54,7 +56,7 @@ class _EtcControllerScreenState extends State<EtcControllerScreen> {
                 height: 10,
               ),
               Container(
-                decoration: const BoxDecoration(color: Color(0XFFDBE4C6)),
+                decoration: const BoxDecoration(color: ColorsModel.fourth),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -64,13 +66,13 @@ class _EtcControllerScreenState extends State<EtcControllerScreen> {
                         '환풍기 각도',
                         style: TextStyle(
                           fontSize: 20,
-                          color: Color(0XFF94AF9F),
+                          color: ColorsModel.third,
                         ),
                       ),
                     ),
                     Switch(
-                      activeColor: const Color(0XFF94AF9F),
-                      inactiveThumbColor: const Color(0XFFAEC2B6),
+                      activeColor: ColorsModel.third,
+                      inactiveThumbColor: ColorsModel.second,
                       value: _isChecked2,
                       onChanged: (value) {
                         setState(
@@ -87,7 +89,7 @@ class _EtcControllerScreenState extends State<EtcControllerScreen> {
                 height: 10,
               ),
               Container(
-                decoration: const BoxDecoration(color: Color(0XFFDBE4C6)),
+                decoration: const BoxDecoration(color: ColorsModel.fourth),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -97,13 +99,13 @@ class _EtcControllerScreenState extends State<EtcControllerScreen> {
                         '조도 제어',
                         style: TextStyle(
                           fontSize: 20,
-                          color: Color(0XFF94AF9F),
+                          color: ColorsModel.third,
                         ),
                       ),
                     ),
                     Switch(
-                      activeColor: const Color(0XFF94AF9F),
-                      inactiveThumbColor: const Color(0XFFAEC2B6),
+                      activeColor: ColorsModel.third,
+                      inactiveThumbColor: ColorsModel.second,
                       value: _isChecked3,
                       onChanged: (value) {
                         setState(

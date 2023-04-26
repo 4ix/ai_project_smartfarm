@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../models/colors_model.dart';
+
 class InternalSensor extends StatelessWidget {
   const InternalSensor({
     super.key,
@@ -21,7 +23,7 @@ class InternalSensor extends StatelessWidget {
                         width: 150,
                         height: 71,
                         decoration: const BoxDecoration(
-                          color: Color(0XFFDBE4C6),
+                          color: ColorsModel.fourth,
                         ),
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
@@ -35,14 +37,14 @@ class InternalSensor extends StatelessWidget {
                                     '내부 온도',
                                     style: TextStyle(
                                       fontSize: 20,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                   Text(
                                     '23.8 ℃',
                                     style: TextStyle(
                                       fontSize: 18,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                 ],
@@ -50,7 +52,7 @@ class InternalSensor extends StatelessWidget {
                               Icon(
                                 Icons.device_thermostat_outlined,
                                 size: 50,
-                                color: Color(0XFF94AF9F),
+                                color: ColorsModel.third,
                               ),
                             ],
                           ),
@@ -63,7 +65,7 @@ class InternalSensor extends StatelessWidget {
                         width: 150,
                         height: 71,
                         decoration: const BoxDecoration(
-                          color: Color(0XFFDBE4C6),
+                          color: ColorsModel.fourth,
                         ),
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
@@ -77,14 +79,14 @@ class InternalSensor extends StatelessWidget {
                                     '내부 습도',
                                     style: TextStyle(
                                       fontSize: 20,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                   Text(
                                     '69.2 %',
                                     style: TextStyle(
                                       fontSize: 18,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                 ],
@@ -92,7 +94,7 @@ class InternalSensor extends StatelessWidget {
                               Icon(
                                 Icons.water_drop_outlined,
                                 size: 50,
-                                color: Color(0XFF94AF9F),
+                                color: ColorsModel.third,
                               ),
                             ],
                           ),
@@ -110,7 +112,7 @@ class InternalSensor extends StatelessWidget {
                         width: 150,
                         height: 71,
                         decoration: const BoxDecoration(
-                          color: Color(0XFFDBE4C6),
+                          color: ColorsModel.fourth,
                         ),
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
@@ -124,14 +126,14 @@ class InternalSensor extends StatelessWidget {
                                     '토양 온도',
                                     style: TextStyle(
                                       fontSize: 20,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                   Text(
                                     '15.3 ℃',
                                     style: TextStyle(
                                       fontSize: 18,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                 ],
@@ -139,7 +141,7 @@ class InternalSensor extends StatelessWidget {
                               Icon(
                                 Icons.device_thermostat_outlined,
                                 size: 50,
-                                color: Color(0XFF94AF9F),
+                                color: ColorsModel.third,
                               ),
                             ],
                           ),
@@ -152,7 +154,7 @@ class InternalSensor extends StatelessWidget {
                         width: 150,
                         height: 71,
                         decoration: const BoxDecoration(
-                          color: Color(0XFFDBE4C6),
+                          color: ColorsModel.fourth,
                         ),
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
@@ -166,14 +168,14 @@ class InternalSensor extends StatelessWidget {
                                     '토양 습도',
                                     style: TextStyle(
                                       fontSize: 20,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                   Text(
                                     '78.6 %',
                                     style: TextStyle(
                                       fontSize: 18,
-                                      color: Color(0XFF94AF9F),
+                                      color: ColorsModel.third,
                                     ),
                                   ),
                                 ],
@@ -181,7 +183,7 @@ class InternalSensor extends StatelessWidget {
                               Icon(
                                 Icons.water_drop_outlined,
                                 size: 50,
-                                color: Color(0XFF94AF9F),
+                                color: ColorsModel.third,
                               ),
                             ],
                           ),

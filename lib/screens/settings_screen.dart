@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartfarm/models/colors_model.dart';
 import 'package:smartfarm/screens/warning_setting_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -12,11 +13,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFBBD6B8),
+      backgroundColor: ColorsModel.first,
       appBar: AppBar(
         title: const Text('설정'),
-        backgroundColor: const Color(0xFF94AF9F),
-        foregroundColor: const Color(0xFFDBE4C6),
+        backgroundColor: ColorsModel.third,
+        foregroundColor: ColorsModel.fourth,
       ),
       body: const Column(children: [WarningSetting()]),
     );
