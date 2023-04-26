@@ -4,6 +4,7 @@ import 'package:smartfarm/screens/controler_screen.dart';
 import 'package:smartfarm/screens/soil_screen.dart';
 import 'package:smartfarm/screens/cctv_screen.dart';
 
+import 'settings_screen.dart';
 import 'menu_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -39,9 +40,16 @@ class _HomeScreenState extends State<HomeScreen> {
         foregroundColor: const Color(0xFFDBE4C6),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const SettingsScreen(),
+                ),
+              );
+            },
             icon: const Icon(Icons.settings),
-          )
+          ),
         ],
       ),
       body: _widgetOptions[_selectedIndex],
