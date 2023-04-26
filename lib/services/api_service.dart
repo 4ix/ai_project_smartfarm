@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:smartfarm/models/external_model.dart';
 // import 'package:http/http.dart' as http;
 
 import 'package:smartfarm/models/users_model.dart';
@@ -34,5 +35,19 @@ class ApiService {
     //   return usersInstance;
     // }
     // throw Error();
+  }
+
+  static Future<List<ExternalModel>> getExternals() async {
+    List<ExternalModel> usersInstance = [];
+
+    // 더미 Json 긁어오는 방법
+    String jsonString =
+        await rootBundle.loadString('assets/json/externals.json');
+    final jsonResponse = json.decode(jsonString);
+    for (var user in jsonResponse) {
+      final instance = ExternalModel.fromJson(user);
+      usersInstance.add(instance);
+    }
+    return usersInstance;
   }
 }
