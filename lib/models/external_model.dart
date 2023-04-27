@@ -1,9 +1,9 @@
 class ExternalModel {
-  late final temperature,
+  late final dynamic temperature,
       humidity,
       weather,
-      wind_direction,
-      wind_speed,
+      windDirection,
+      windSpeed,
       sunrise,
       sunset;
 
@@ -11,8 +11,8 @@ class ExternalModel {
       : temperature = json['temperature'],
         humidity = json['humidity'],
         weather = json['weather'],
-        wind_direction = json['wind_direction'],
-        wind_speed = json['wind_speed'],
+        windDirection = json['wind_direction'],
+        windSpeed = json['wind_speed'],
         sunrise = json['sunrise'],
         sunset = json['sunset'];
 }

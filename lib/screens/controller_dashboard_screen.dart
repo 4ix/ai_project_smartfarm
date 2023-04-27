@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:smartfarm/models/colors_model.dart';
+import 'package:smartfarm/models/external_model.dart';
+
+import '../models/internal_model.dart';
+import '../services/api_service.dart';
 
 class ControllerDashboard extends StatefulWidget {
   const ControllerDashboard({
@@ -11,8 +15,60 @@ class ControllerDashboard extends StatefulWidget {
 }
 
 class _ControllerDashboardState extends State<ControllerDashboard> {
+  Future<List<dynamic>> _getData() async {
+    final Future<List<InternalModel>> internals = ApiService.getInternals();
+    final Future<List<ExternalModel>> externals = ApiService.getExternals();
+
+    return Future.wait([internals, externals]);
+  }
+
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: _getData(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return ControllerDashboardWidget(
+            dataSnapshot: snapshot,
+          );
+        }
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+  }
+}
+
+class ControllerDashboardWidget extends StatelessWidget {
+  const ControllerDashboardWidget({
+    super.key,
+    required this.dataSnapshot,
+  });
+
+  final AsyncSnapshot<List<dynamic>> dataSnapshot;
+
+  @override
+  Widget build(BuildContext context) {
+    final List<InternalModel> internals = dataSnapshot.data![0];
+    final List<ExternalModel> externals = dataSnapshot.data![1];
+
+    IconData iconData;
+    switch (externals[0].weather) {
+      case '맑음':
+        iconData = Icons.sunny;
+        break;
+      case '흐림':
+        iconData = Icons.cloud;
+        break;
+      case '비':
+        iconData = Icons.water;
+      case '눈':
+        iconData = Icons.snowing;
+      default:
+        iconData = Icons.error;
+    }
+
     return Container(
       height: 150,
       decoration: const BoxDecoration(
@@ -25,35 +81,35 @@ class _ControllerDashboardState extends State<ControllerDashboard> {
             Container(
               height: 46,
               decoration: const BoxDecoration(color: ColorsModel.fourth),
-              child: const Column(
+              child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(
-                          Icons.sunny,
+                          iconData,
                           size: 30,
                           color: ColorsModel.third,
                         ),
                         Text(
-                          '맑음 / 23.8℃',
-                          style: TextStyle(
+                          '${externals[0].weather} / ${externals[0].temperature} ℃',
+                          style: const TextStyle(
                             fontSize: 15,
                             color: ColorsModel.third,
                           ),
                         ),
                         Text(
-                          '↑ / 07:32',
-                          style: TextStyle(
+                          '↑ / ${externals[0].sunrise}',
+                          style: const TextStyle(
                             fontSize: 15,
                             color: ColorsModel.third,
                           ),
                         ),
                         Text(
-                          '↓ / 18:08',
-                          style: TextStyle(
+                          '↓ / ${externals[0].sunset}',
+                          style: const TextStyle(
                             fontSize: 15,
                             color: ColorsModel.third,
                           ),
@@ -75,19 +131,19 @@ class _ControllerDashboardState extends State<ControllerDashboard> {
                   decoration: const BoxDecoration(
                     color: ColorsModel.fourth,
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(6),
+                  child: Padding(
+                    padding: const EdgeInsets.all(6),
                     child: Column(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.device_thermostat_outlined,
                               size: 30,
                               color: ColorsModel.third,
                             ),
-                            Text(
+                            const Text(
                               '내부 온도',
                               style: TextStyle(
                                 fontSize: 15,
@@ -95,8 +151,8 @@ class _ControllerDashboardState extends State<ControllerDashboard> {
                               ),
                             ),
                             Text(
-                              '23.8℃',
-                              style: TextStyle(
+                              '${internals[0].temperature} ℃',
+                              style: const TextStyle(
                                 fontSize: 15,
                                 color: ColorsModel.third,
                               ),
@@ -106,12 +162,12 @@ class _ControllerDashboardState extends State<ControllerDashboard> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.water_drop_outlined,
                               size: 30,
                               color: ColorsModel.third,
                             ),
-                            Text(
+                            const Text(
                               '내부 습도',
                               style: TextStyle(
                                 fontSize: 15,
@@ -119,8 +175,8 @@ class _ControllerDashboardState extends State<ControllerDashboard> {
                               ),
                             ),
                             Text(
-                              '23.8℃',
-                              style: TextStyle(
+                              '${internals[0].humidity} %',
+                              style: const TextStyle(
                                 fontSize: 15,
                                 color: ColorsModel.third,
                               ),
@@ -136,19 +192,19 @@ class _ControllerDashboardState extends State<ControllerDashboard> {
                   decoration: const BoxDecoration(
                     color: ColorsModel.fourth,
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(6),
+                  child: Padding(
+                    padding: const EdgeInsets.all(6),
                     child: Column(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.assistant_navigation,
                               size: 30,
                               color: ColorsModel.third,
                             ),
-                            Text(
+                            const Text(
                               '풍향',
                               style: TextStyle(
                                 fontSize: 15,
@@ -156,8 +212,8 @@ class _ControllerDashboardState extends State<ControllerDashboard> {
                               ),
                             ),
                             Text(
-                              '남동향',
-                              style: TextStyle(
+                              '${externals[0].windDirection}',
+                              style: const TextStyle(
                                 fontSize: 15,
                                 color: ColorsModel.third,
                               ),
@@ -167,12 +223,12 @@ class _ControllerDashboardState extends State<ControllerDashboard> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.wind_power_outlined,
                               size: 30,
                               color: ColorsModel.third,
                             ),
-                            Text(
+                            const Text(
                               '풍속',
                               style: TextStyle(
                                 fontSize: 15,
@@ -180,8 +236,8 @@ class _ControllerDashboardState extends State<ControllerDashboard> {
                               ),
                             ),
                             Text(
-                              '1.2m/s',
-                              style: TextStyle(
+                              '${externals[0].windSpeed} m/s',
+                              style: const TextStyle(
                                 fontSize: 15,
                                 color: ColorsModel.third,
                               ),

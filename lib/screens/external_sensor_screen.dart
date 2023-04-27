@@ -13,7 +13,13 @@ class ExternalSensor extends StatefulWidget {
 }
 
 class _ExternalSensorState extends State<ExternalSensor> {
-  final Future<List<ExternalModel>> externals = ApiService.getExternals();
+  late Future<List<ExternalModel>> externals;
+
+  @override
+  void initState() {
+    super.initState();
+    externals = ApiService.getExternals();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +39,7 @@ class _ExternalSensorState extends State<ExternalSensor> {
   }
 }
 
-class ExternalWidget extends StatelessWidget {
+class ExternalWidget extends StatefulWidget {
   const ExternalWidget({
     super.key,
     required this.externalSnapshot,
@@ -42,9 +48,22 @@ class ExternalWidget extends StatelessWidget {
   final AsyncSnapshot<List<ExternalModel>> externalSnapshot;
 
   @override
+  State<ExternalWidget> createState() => _ExternalWidgetState();
+}
+
+class _ExternalWidgetState extends State<ExternalWidget> {
+  late List<ExternalModel> _externals;
+
+  @override
+  void initState() {
+    super.initState();
+    _externals = widget.externalSnapshot.data!;
+  }
+
+  @override
   Widget build(BuildContext context) {
     IconData iconData;
-    switch (externalSnapshot.data![0].weather) {
+    switch (_externals[0].weather) {
       case '맑음':
         iconData = Icons.sunny;
         break;
@@ -91,7 +110,7 @@ class ExternalWidget extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    '${externalSnapshot.data![0].temperature} ℃',
+                                    '${widget.externalSnapshot.data![0].temperature} ℃',
                                     style: const TextStyle(
                                       fontSize: 18,
                                       color: ColorsModel.third,
@@ -133,7 +152,7 @@ class ExternalWidget extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    '${externalSnapshot.data![0].humidity} %',
+                                    '${widget.externalSnapshot.data![0].humidity} %',
                                     style: const TextStyle(
                                       fontSize: 18,
                                       color: ColorsModel.third,
@@ -180,7 +199,7 @@ class ExternalWidget extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    '${externalSnapshot.data![0].weather}',
+                                    '${widget.externalSnapshot.data![0].weather}',
                                     style: const TextStyle(
                                       fontSize: 18,
                                       color: ColorsModel.third,
@@ -222,7 +241,7 @@ class ExternalWidget extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    '${externalSnapshot.data![0].wind_direction}',
+                                    '${widget.externalSnapshot.data![0].windDirection}',
                                     style: const TextStyle(
                                       fontSize: 18,
                                       color: ColorsModel.third,
@@ -269,7 +288,7 @@ class ExternalWidget extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    '${externalSnapshot.data![0].wind_speed} m/s',
+                                    '${widget.externalSnapshot.data![0].windSpeed} m/s',
                                     style: const TextStyle(
                                       fontSize: 18,
                                       color: ColorsModel.third,
