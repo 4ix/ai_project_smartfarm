@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartfarm/models/colors_model.dart';
 import 'package:smartfarm/models/users_model.dart';
-import 'package:smartfarm/shared/change_password_screen.dart';
 import 'package:smartfarm/shared/home_screen.dart';
 
 import '../services/api_service.dart';
@@ -125,21 +124,6 @@ class LoginWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          const ChangePassWordScreen(),
-                    ),
-                  );
-                },
-                child: const Text(
-                  '비밀번호변경',
-                  textAlign: TextAlign.right,
-                ),
-              ),
               const SizedBox(
                 height: 10,
               ),
@@ -157,6 +141,8 @@ class LoginWidget extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (BuildContext context) => HomeScreen(
                               userIndex: userIndex,
+                              userName: userSnapshot.data![userIndex].username,
+                              userEmail: userSnapshot.data![userIndex].email,
                             ),
                           ),
                         );

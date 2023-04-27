@@ -4,6 +4,8 @@
     "humidity": 56.1,
     "weather": "눈",
     "wind_direction": "남동향",
-    "wind_speed": 1.2
+    "wind_speed": 1.2,
+    "sunrise": "07:00",
+    "sunset": "18:00"
   }
 ]

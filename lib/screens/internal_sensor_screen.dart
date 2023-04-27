@@ -1,11 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:smartfarm/models/internal_model.dart';
 
 import '../models/colors_model.dart';
+import '../services/api_service.dart';
 
-class InternalSensor extends StatelessWidget {
+class InternalSensor extends StatefulWidget {
   const InternalSensor({
     super.key,
   });
+
+  @override
+  State<InternalSensor> createState() => _InternalSensorState();
+}
+
+class _InternalSensorState extends State<InternalSensor> {
+  final Future<List<InternalModel>> internals = ApiService.getInternals();
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: internals,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return InternalWidget(
+            internalSnapshot: snapshot,
+          );
+        }
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+  }
+}
+
+class InternalWidget extends StatelessWidget {
+  const InternalWidget({
+    super.key,
+    required this.internalSnapshot,
+  });
+
+  final AsyncSnapshot<List<InternalModel>> internalSnapshot;
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +59,15 @@ class InternalSensor extends StatelessWidget {
                         decoration: const BoxDecoration(
                           color: ColorsModel.fourth,
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     '내부 온도',
                                     style: TextStyle(
                                       fontSize: 20,
@@ -41,15 +75,15 @@ class InternalSensor extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    '23.8 ℃',
-                                    style: TextStyle(
+                                    '${internalSnapshot.data![0].temperature} ℃',
+                                    style: const TextStyle(
                                       fontSize: 18,
                                       color: ColorsModel.third,
                                     ),
                                   ),
                                 ],
                               ),
-                              Icon(
+                              const Icon(
                                 Icons.device_thermostat_outlined,
                                 size: 50,
                                 color: ColorsModel.third,
@@ -67,15 +101,15 @@ class InternalSensor extends StatelessWidget {
                         decoration: const BoxDecoration(
                           color: ColorsModel.fourth,
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     '내부 습도',
                                     style: TextStyle(
                                       fontSize: 20,
@@ -83,15 +117,15 @@ class InternalSensor extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    '69.2 %',
-                                    style: TextStyle(
+                                    '${internalSnapshot.data![0].humidity} %',
+                                    style: const TextStyle(
                                       fontSize: 18,
                                       color: ColorsModel.third,
                                     ),
                                   ),
                                 ],
                               ),
-                              Icon(
+                              const Icon(
                                 Icons.water_drop_outlined,
                                 size: 50,
                                 color: ColorsModel.third,
@@ -114,15 +148,15 @@ class InternalSensor extends StatelessWidget {
                         decoration: const BoxDecoration(
                           color: ColorsModel.fourth,
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     '토양 온도',
                                     style: TextStyle(
                                       fontSize: 20,
@@ -130,15 +164,15 @@ class InternalSensor extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    '15.3 ℃',
-                                    style: TextStyle(
+                                    '${internalSnapshot.data![0].soil_temperature} ℃',
+                                    style: const TextStyle(
                                       fontSize: 18,
                                       color: ColorsModel.third,
                                     ),
                                   ),
                                 ],
                               ),
-                              Icon(
+                              const Icon(
                                 Icons.device_thermostat_outlined,
                                 size: 50,
                                 color: ColorsModel.third,
@@ -156,15 +190,15 @@ class InternalSensor extends StatelessWidget {
                         decoration: const BoxDecoration(
                           color: ColorsModel.fourth,
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     '토양 습도',
                                     style: TextStyle(
                                       fontSize: 20,
@@ -172,15 +206,15 @@ class InternalSensor extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    '78.6 %',
-                                    style: TextStyle(
+                                    '${internalSnapshot.data![0].soil_humidity} %',
+                                    style: const TextStyle(
                                       fontSize: 18,
                                       color: ColorsModel.third,
                                     ),
                                   ),
                                 ],
                               ),
-                              Icon(
+                              const Icon(
                                 Icons.water_drop_outlined,
                                 size: 50,
                                 color: ColorsModel.third,

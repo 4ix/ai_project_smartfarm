@@ -1,53 +1,23 @@
 import 'package:flutter/material.dart';
-
 import '../models/colors_model.dart';
-import '../models/users_model.dart';
-import '../services/api_service.dart';
 
 class MenuDrawer extends StatefulWidget {
   const MenuDrawer({
     super.key,
     required this.userIndex,
+    required this.userName,
+    required this.userEmail,
   });
 
   final int userIndex;
+  final String userName;
+  final String userEmail;
 
   @override
   State<MenuDrawer> createState() => _MenuDrawerState();
 }
 
 class _MenuDrawerState extends State<MenuDrawer> {
-  final Future<List<UsersModel>> users = ApiService.getUsers();
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: users,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return DrawerWidget(
-            userSnapshot: snapshot,
-            userIndex: widget.userIndex,
-          );
-        }
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-  }
-}
-
-class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({
-    super.key,
-    required this.userSnapshot,
-    required this.userIndex,
-  });
-
-  final AsyncSnapshot<List<UsersModel>> userSnapshot;
-  final int userIndex;
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -62,7 +32,7 @@ class DrawerWidget extends StatelessWidget {
               ),
             ),
             accountName: Text(
-              userSnapshot.data![userIndex].username,
+              widget.userName,
               style: const TextStyle(
                 color: ColorsModel.fourth,
                 fontSize: 24,
@@ -70,7 +40,7 @@ class DrawerWidget extends StatelessWidget {
               ),
             ),
             accountEmail: Text(
-              userSnapshot.data![userIndex].email,
+              widget.userEmail,
               style: const TextStyle(
                 color: ColorsModel.fourth,
                 fontSize: 16,

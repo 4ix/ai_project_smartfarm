@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:smartfarm/models/colors_model.dart';
 
-class ControllerDashboard extends StatelessWidget {
+class ControllerDashboard extends StatefulWidget {
   const ControllerDashboard({
     super.key,
   });
 
+  @override
+  State<ControllerDashboard> createState() => _ControllerDashboardState();
+}
+
+class _ControllerDashboardState extends State<ControllerDashboard> {
   @override
   Widget build(BuildContext context) {
     return Container(

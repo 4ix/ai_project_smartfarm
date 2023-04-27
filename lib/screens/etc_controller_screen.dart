@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../models/colors_model.dart';
 
 class EtcControllerScreen extends StatefulWidget {

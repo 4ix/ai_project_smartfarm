@@ -12,9 +12,13 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({
     super.key,
     required this.userIndex,
+    required this.userName,
+    required this.userEmail,
   });
 
   final int userIndex;
+  final String userName;
+  final String userEmail;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -61,6 +65,8 @@ class _HomeScreenState extends State<HomeScreen> {
       body: _widgetOptions[_selectedIndex],
       drawer: MenuDrawer(
         userIndex: widget.userIndex,
+        userName: widget.userName,
+        userEmail: widget.userEmail,
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: ColorsModel.fourth,
