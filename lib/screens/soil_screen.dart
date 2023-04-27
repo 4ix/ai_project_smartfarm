@@ -10,7 +10,15 @@ class SoilScreen extends StatelessWidget {
     return const Scaffold(
       backgroundColor: ColorsModel.first,
       body: Column(
-        children: [SoilDashboard()],
+        children: [
+          SoilDashboard(),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Image(
+              image: AssetImage('assets/soil.png'),
+            ),
+          ),
+        ],
       ),
     );
   }
