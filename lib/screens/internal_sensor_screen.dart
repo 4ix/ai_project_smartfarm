@@ -157,23 +157,23 @@ class InternalWidget extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Text(
-                                    '토양 온도',
+                                    'CO2',
                                     style: TextStyle(
                                       fontSize: 20,
                                       color: ColorsModel.third,
                                     ),
                                   ),
                                   Text(
-                                    '${internalSnapshot.data![0].soil_temperature} ℃',
+                                    '${internalSnapshot.data![0].soilCo2} ppm',
                                     style: const TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 17,
                                       color: ColorsModel.third,
                                     ),
                                   ),
                                 ],
                               ),
                               const Icon(
-                                Icons.device_thermostat_outlined,
+                                Icons.co2_outlined,
                                 size: 50,
                                 color: ColorsModel.third,
                               ),
@@ -206,7 +206,7 @@ class InternalWidget extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    '${internalSnapshot.data![0].soil_humidity} %',
+                                    '${internalSnapshot.data![0].soilHumidity} %',
                                     style: const TextStyle(
                                       fontSize: 18,
                                       color: ColorsModel.third,

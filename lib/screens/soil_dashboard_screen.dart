@@ -186,19 +186,19 @@ class SoilDashboardWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             const Icon(
-                              Icons.device_thermostat_outlined,
+                              Icons.co2_outlined,
                               size: 30,
                               color: ColorsModel.third,
                             ),
                             const Text(
-                              '토양 온도',
+                              'CO2',
                               style: TextStyle(
                                 fontSize: 15,
                                 color: ColorsModel.third,
                               ),
                             ),
                             Text(
-                              '${internals[0].soil_temperature} ℃',
+                              '${internals[0].soilCo2} ppm',
                               style: const TextStyle(
                                 fontSize: 15,
                                 color: ColorsModel.third,
@@ -222,7 +222,7 @@ class SoilDashboardWidget extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              '${internals[0].soil_humidity} %',
+                              '${internals[0].soilHumidity} %',
                               style: const TextStyle(
                                 fontSize: 15,
                                 color: ColorsModel.third,

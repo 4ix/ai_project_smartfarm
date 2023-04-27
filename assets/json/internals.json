@@ -2,7 +2,7 @@
   {
     "temperature": 16.3,
     "humidity": 36.1,
-    "soil_temperature": 22.3,
+    "soil_co2": 423.1,
     "soil_humidity": 66.1
   }
 ]

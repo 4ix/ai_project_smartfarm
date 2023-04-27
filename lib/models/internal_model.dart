@@ -1,9 +1,9 @@
 class InternalModel {
-  late final dynamic temperature, humidity, soil_temperature, soil_humidity;
+  late final dynamic temperature, humidity, soilCo2, soilHumidity;
 
   InternalModel.fromJson(Map<String, dynamic> json)
       : temperature = json['temperature'],
         humidity = json['humidity'],
-        soil_temperature = json['soil_temperature'],
-        soil_humidity = json['soil_humidity'];
+        soilCo2 = json['soil_co2'],
+        soilHumidity = json['soil_humidity'];
 }
