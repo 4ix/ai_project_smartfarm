@@ -38,6 +38,7 @@ dependencies:
   fl_chart: ^0.62.0
   http: ^0.13.5
   weather_icons: ^3.0.0
+  video_player: ^2.6.1
 
 dev_dependencies:
   flutter_test:
