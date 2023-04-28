@@ -6,7 +6,12 @@ import 'package:smartfarm/screens/warning_setting_screen.dart';
 import '../shared/change_password_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  const SettingsScreen({
+    super.key,
+    required this.userId,
+  });
+
+  final String userId;
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -35,7 +40,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const ChangePassWordScreen()),
+                      builder: (context) => ChangePassWordScreen(
+                            userId: widget.userId,
+                          )),
                 );
               },
               style: ElevatedButton.styleFrom(

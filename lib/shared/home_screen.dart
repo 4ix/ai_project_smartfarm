@@ -54,7 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => const SettingsScreen(),
+                  builder: (BuildContext context) => SettingsScreen(
+                    userId: widget.userId,
+                  ),
                 ),
               );
             },

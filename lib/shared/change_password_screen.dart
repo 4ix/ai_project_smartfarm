@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import '../models/colors_model.dart';
+import '../screens/login_screen.dart';
 
 class ChangePassWordScreen extends StatefulWidget {
-  const ChangePassWordScreen({super.key});
+  const ChangePassWordScreen({
+    super.key,
+    required this.userId,
+  });
+
+  final String userId;
 
   @override
   State<ChangePassWordScreen> createState() => _ChangePassWordScreenState();
@@ -99,13 +106,30 @@ class _ChangePassWordScreenState extends State<ChangePassWordScreen> {
                   ),
                   ButtonTheme(
                     child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         // password API 호출하는거로 변경해야 함
-                        if (controller2 != controller3) {
-                          showSnackBar(
+                        final url = Uri.parse(
+                            'http://172.16.10.57:5000/farm/v1/${widget.userId}/change_password');
+                        final response = await http.post(
+                          url,
+                          body: {
+                            'current_password': controller.text,
+                            'new_password': controller2.text,
+                            'confirm_password': controller3.text,
+                          },
+                        );
+
+                        if (response.statusCode == 200) {
+                          showSnackBar(context, const Text('변경 성공'));
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, '/', (_) => false);
+                          Navigator.push(
                             context,
-                            const Text('비밀번호가 다릅니다.'),
+                            MaterialPageRoute(
+                                builder: (context) => const LoginScreen()),
                           );
+                        } else {
+                          showSnackBar(context, const Text('변경 실패'));
                         }
                       },
                       style: ElevatedButton.styleFrom(

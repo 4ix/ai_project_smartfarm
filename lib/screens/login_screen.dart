@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:smartfarm/models/colors_model.dart';
+
 import 'dart:convert';
 
 import '../models/users_model.dart';
@@ -117,9 +118,15 @@ class LoginWidget extends StatelessWidget {
               ButtonTheme(
                 child: ElevatedButton(
                   onPressed: () async {
-                    var url =
-                        'http://172.16.10.57:5000/farm/v1/login?id=${controller.text}&password=${controller2.text}';
-                    final response = await http.get(Uri.parse(url));
+                    final url =
+                        Uri.parse('http://172.16.10.57:5000/farm/v1/login');
+                    final response = await http.post(
+                      url,
+                      body: {
+                        'id': controller.text,
+                        'password': controller2.text,
+                      },
+                    );
 
                     if (response.statusCode == 200) {
                       var result =

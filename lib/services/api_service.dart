@@ -3,41 +3,33 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:smartfarm/models/external_model.dart';
 import 'package:smartfarm/models/internal_model.dart';
-// import 'package:http/http.dart' as http;
-
-import 'package:smartfarm/models/users_model.dart';
+import 'package:smartfarm/models/sites_model.dart';
+import 'package:http/http.dart' as http;
 
 class ApiService {
   // 개발되는 api 주소 넣기
-  static const String baseUrl = 'http://172.16.10.57:5000/FARM/12345S/02';
+  static const String baseUrl = 'http://172.16.10.57:5000/FARM';
   static const String external = 'MONITORING/EXTERNAL_SENSOR';
 
   static const String baseLogin = 'http://172.16.10.57:5000/farm/v1/login';
 
-  static Future<List<UsersModel>> getUsers() async {
-    List<UsersModel> usersInstance = [];
+  static Future<List<SitesModel>> getSites(id) async {
+    List<SitesModel> sitesInstance = [];
+    final url = Uri.parse('$baseUrl/$id/sites');
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      // final List<dynamic> sites = jsonDecode(response.body);
+      // for (var site in sites) {
+      //   final instance = SitesModel.fromJson(site);
+      //   sitesInstance.add(instance);
+      // }
+      // final List<dynamic> decodedJson = jsonDecode(response.body);
+      print(jsonDecode(response.body));
+      // final SitesModel sites = SitesModel.fromJson(decodedJson);
 
-    // 더미 Json 긁어오는 방법
-    String jsonString = await rootBundle.loadString('assets/json/users.json');
-    final jsonResponse = json.decode(jsonString);
-    for (var user in jsonResponse) {
-      final instance = UsersModel.fromJson(user);
-      usersInstance.add(instance);
+      return sitesInstance;
     }
-    return usersInstance;
-
-    // // 실제 API 긁어오는 방법
-    // final url = Uri.parse('$baseUrl/$login');
-    // final response = await http.get(url);
-    // if (response.statusCode == 200) {
-    //   final List<dynamic> users = jsonDecode(response.body);
-    //   for (var user in users) {
-    //     final instance = UsersModel.fromJson(user);
-    //     usersInstance.add(instance);
-    //   }
-    //   return usersInstance;
-    // }
-    // throw Error();
+    throw Error();
   }
 
   static Future<List<ExternalModel>> getExternals() async {

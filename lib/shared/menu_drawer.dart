@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartfarm/services/api_service.dart';
 import '../models/colors_model.dart';
 
 class MenuDrawer extends StatefulWidget {
@@ -18,6 +19,12 @@ class MenuDrawer extends StatefulWidget {
 }
 
 class _MenuDrawerState extends State<MenuDrawer> {
+  @override
+  void initState() {
+    super.initState();
+    ApiService.getSites(widget.userId);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
