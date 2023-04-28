@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:smartfarm/models/colors_model.dart';
-import 'package:smartfarm/models/users_model.dart';
-import 'package:smartfarm/shared/home_screen.dart';
+import 'dart:convert';
 
-import '../services/api_service.dart';
+import '../models/users_model.dart';
+import '../shared/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -16,41 +17,27 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController controller = TextEditingController();
   TextEditingController controller2 = TextEditingController();
 
-  final Future<List<UsersModel>> users = ApiService.getUsers();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorsModel.first,
-      body: FutureBuilder(
-        future: users,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return LoginWidget(
-              controller: controller,
-              controller2: controller2,
-              userSnapshot: snapshot,
-            );
-          }
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
+      body: LoginWidget(
+        controller: controller,
+        controller2: controller2,
       ),
     );
   }
 }
 
 class LoginWidget extends StatelessWidget {
-  const LoginWidget(
-      {super.key,
-      required this.controller,
-      required this.controller2,
-      required this.userSnapshot});
+  const LoginWidget({
+    super.key,
+    required this.controller,
+    required this.controller2,
+  });
 
   final TextEditingController controller;
   final TextEditingController controller2;
-  final AsyncSnapshot<List<UsersModel>> userSnapshot;
 
   @override
   Widget build(BuildContext context) {
@@ -129,28 +116,27 @@ class LoginWidget extends StatelessWidget {
               ),
               ButtonTheme(
                 child: ElevatedButton(
-                  onPressed: () {
-                    if (userSnapshot.data!
-                        .any((user) => user.id == controller.text)) {
-                      final int userIndex = userSnapshot.data!
-                          .indexWhere((user) => user.id == controller.text);
-                      if (controller2.text ==
-                          userSnapshot.data![userIndex].password) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) => HomeScreen(
-                              userIndex: userIndex,
-                              userName: userSnapshot.data![userIndex].username,
-                              userEmail: userSnapshot.data![userIndex].email,
-                            ),
+                  onPressed: () async {
+                    var url =
+                        'http://172.16.10.57:5000/farm/v1/login?id=${controller.text}&password=${controller2.text}';
+                    final response = await http.get(Uri.parse(url));
+
+                    if (response.statusCode == 200) {
+                      var result =
+                          UsersModel.fromJson(json.decode(response.body));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => HomeScreen(
+                            userId: result.id,
+                            userName: result.username,
+                            userEmail: result.email,
                           ),
-                        );
-                      } else {
-                        showSnackBar(context, const Text('비밀번호가 틀렸습니다.'));
-                      }
+                        ),
+                      );
                     } else {
-                      showSnackBar(context, const Text('잘못된 정보입니다.'));
+                      showSnackBar(
+                          context, const Text('아이디 혹은 비밀번호를 확인해 주세요 :)'));
                     }
                   },
                   style: ElevatedButton.styleFrom(

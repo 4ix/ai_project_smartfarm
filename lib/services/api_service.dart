@@ -9,8 +9,10 @@ import 'package:smartfarm/models/users_model.dart';
 
 class ApiService {
   // 개발되는 api 주소 넣기
-  static const String baseUrl = 'http://192.168.0.123';
-  static const String login = 'login';
+  static const String baseUrl = 'http://172.16.10.57:5000/FARM/12345S/02';
+  static const String external = 'MONITORING/EXTERNAL_SENSOR';
+
+  static const String baseLogin = 'http://172.16.10.57:5000/farm/v1/login';
 
   static Future<List<UsersModel>> getUsers() async {
     List<UsersModel> usersInstance = [];
@@ -50,6 +52,19 @@ class ApiService {
       externalsInstance.add(instance);
     }
     return externalsInstance;
+
+    // // 실제 API 긁어오는 방법 (External)
+    // final url = Uri.parse('$baseUrl/$external');
+    // final response = await http.get(url);
+    // if (response.statusCode == 200) {
+    //   final List<dynamic> externals = jsonDecode(response.body);
+    //   for (var external in externals) {
+    //     final instance = ExternalModel.fromJson(external);
+    //     externalsInstance.add(instance);
+    //   }
+    //   return externalsInstance;
+    // }
+    // throw Error();
   }
 
   static Future<List<InternalModel>> getInternals() async {

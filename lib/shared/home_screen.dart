@@ -11,12 +11,12 @@ import 'menu_drawer.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
     super.key,
-    required this.userIndex,
+    required this.userId,
     required this.userName,
     required this.userEmail,
   });
 
-  final int userIndex;
+  final String userId;
   final String userName;
   final String userEmail;
 
@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: _widgetOptions[_selectedIndex],
       drawer: MenuDrawer(
-        userIndex: widget.userIndex,
+        userId: widget.userId,
         userName: widget.userName,
         userEmail: widget.userEmail,
       ),

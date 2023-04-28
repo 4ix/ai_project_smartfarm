@@ -4,12 +4,12 @@ import '../models/colors_model.dart';
 class MenuDrawer extends StatefulWidget {
   const MenuDrawer({
     super.key,
-    required this.userIndex,
+    required this.userId,
     required this.userName,
     required this.userEmail,
   });
 
-  final int userIndex;
+  final String userId;
   final String userName;
   final String userEmail;
 

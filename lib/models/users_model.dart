@@ -1,10 +1,8 @@
 class UsersModel {
-  late final String id, password, username, email, sites;
+  late final String id, username, email;
 
   UsersModel.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        password = json['password'],
-        username = json['username'],
-        email = json['email'],
-        sites = json['sites'];
+      : id = json['user_id'],
+        username = json['user_name'],
+        email = json['e_mail'];
 }

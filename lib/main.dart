@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:smartfarm/screens/login_screen.dart';
 
 void main() {

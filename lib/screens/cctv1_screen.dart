@@ -19,6 +19,7 @@ class _CctvOneState extends State<CctvOne> {
     _controller = VideoPlayerController.network(
         'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
       ..initialize().then((_) {
+        _controller.play();
         setState(() {});
       });
   }
@@ -45,25 +46,25 @@ class _CctvOneState extends State<CctvOne> {
               ],
             ),
           ),
-          // Image(
-          //   image: AssetImage('assets/cctv.png'),
-          // ),
-          Center(
-            child: _controller.value.isInitialized
-                ? AspectRatio(
-                    aspectRatio: _controller.value.aspectRatio,
-                    child: GestureDetector(
-                      onTap: () {
-                        if (_controller.value.isPlaying) {
-                          _controller.pause();
-                        } else {
-                          _controller.play();
-                        }
-                      },
-                      child: VideoPlayer(_controller),
-                    ),
-                  )
-                : Container(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: _controller.value.isInitialized
+                  ? AspectRatio(
+                      aspectRatio: _controller.value.aspectRatio,
+                      child: GestureDetector(
+                        onTap: () {
+                          if (_controller.value.isPlaying) {
+                            _controller.pause();
+                          } else {
+                            _controller.play();
+                          }
+                        },
+                        child: VideoPlayer(_controller),
+                      ),
+                    )
+                  : Container(),
+            ),
           ),
         ],
       ),
