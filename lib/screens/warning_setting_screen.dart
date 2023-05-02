@@ -13,8 +13,30 @@ class _WarningSettingState extends State<WarningSetting> {
   late bool _isChecked1 = false;
   String dropdownValueHigh = '27';
   String dropdownValueLow = '17';
-  List<String> itemListHigh = ['20', '21', '22', '23', '24', '25', '26', '27'];
-  List<String> itemListLow = ['10', '11', '12', '13', '14', '15', '16', '17'];
+  List<String> itemListHigh = [
+    '20',
+    '21',
+    '22',
+    '23',
+    '24',
+    '25',
+    '26',
+    '27',
+    '28',
+    '29'
+  ];
+  List<String> itemListLow = [
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16',
+    '17',
+    '18',
+    '19'
+  ];
   late SharedPreferences prefs;
 
   Future<void> initPrefs() async {
