@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:smartfarm/services/api_service.dart';
 import '../models/colors_model.dart';
 
 class MenuDrawer extends StatefulWidget {
   const MenuDrawer({
-    super.key,
+    Key? key,
     required this.userId,
     required this.userName,
     required this.userEmail,
-  });
+    required this.userSites,
+  }) : super(key: key);
 
   final String userId;
   final String userName;
   final String userEmail;
+  final List<String> userSites;
 
   @override
   State<MenuDrawer> createState() => _MenuDrawerState();
 }
 
 class _MenuDrawerState extends State<MenuDrawer> {
-  @override
-  void initState() {
-    super.initState();
-    ApiService.getSites(widget.userId);
-  }
+  String? _selectedSiteId;
 
   @override
   Widget build(BuildContext context) {
@@ -57,16 +54,29 @@ class _MenuDrawerState extends State<MenuDrawer> {
               color: ColorsModel.third,
             ),
           ),
-          ListTile(
-            title: const Text('농장 #1'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            title: const Text('농장 #2'),
-            onTap: () {
-              Navigator.pop(context);
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: widget.userSites.length,
+            itemBuilder: (context, index) {
+              final siteId = widget.userSites[index];
+              return ListTile(
+                title: Text(
+                  '농장 #$siteId',
+                  style: TextStyle(
+                    fontWeight: _selectedSiteId == siteId
+                        ? FontWeight.bold
+                        : FontWeight.normal,
+                  ),
+                ),
+                onTap: () {
+                  setState(() {
+                    _selectedSiteId = siteId;
+                    print(siteId);
+                  });
+                  Navigator.pop(context);
+                },
+                selected: _selectedSiteId == siteId,
+              );
             },
           ),
         ],

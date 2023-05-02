@@ -6,6 +6,7 @@ import 'package:smartfarm/screens/soil_screen.dart';
 import 'package:smartfarm/screens/cctv_screen.dart';
 
 import '../screens/settings_screen.dart';
+import '../services/api_service.dart';
 import 'menu_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,6 +27,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  late final Future<List<String>> _futureSites;
 
   final List<Widget> _widgetOptions = <Widget>[
     const SensorScreen(),
@@ -33,6 +35,20 @@ class _HomeScreenState extends State<HomeScreen> {
     const SoilScreen(),
     const CctvScreen(),
   ];
+
+  List<String> _userSites = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _futureSites = ApiService.getSites(widget.userId).then((sites) {
+      setState(() {
+        _userSites = sites;
+      });
+      print(sites.first);
+      return sites;
+    });
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -69,6 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
         userId: widget.userId,
         userName: widget.userName,
         userEmail: widget.userEmail,
+        userSites: _userSites,
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: ColorsModel.fourth,

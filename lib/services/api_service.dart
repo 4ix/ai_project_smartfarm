@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:smartfarm/models/external_model.dart';
 import 'package:smartfarm/models/internal_model.dart';
-import 'package:smartfarm/models/sites_model.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
@@ -13,23 +12,16 @@ class ApiService {
 
   static const String baseLogin = 'http://172.16.10.57:5000/farm/v1/login';
 
-  static Future<List<SitesModel>> getSites(id) async {
-    List<SitesModel> sitesInstance = [];
+  static Future<List<String>> getSites(id) async {
     final url = Uri.parse('$baseUrl/$id/sites');
     final response = await http.get(url);
     if (response.statusCode == 200) {
-      // final List<dynamic> sites = jsonDecode(response.body);
-      // for (var site in sites) {
-      //   final instance = SitesModel.fromJson(site);
-      //   sitesInstance.add(instance);
-      // }
-      // final List<dynamic> decodedJson = jsonDecode(response.body);
-      print(jsonDecode(response.body));
-      // final SitesModel sites = SitesModel.fromJson(decodedJson);
-
-      return sitesInstance;
+      final json = jsonDecode(response.body);
+      final siteIds = List<String>.from(json['site_ids']);
+      return siteIds;
+    } else {
+      throw Exception('Failed to load sites');
     }
-    throw Error();
   }
 
   static Future<List<ExternalModel>> getExternals() async {
