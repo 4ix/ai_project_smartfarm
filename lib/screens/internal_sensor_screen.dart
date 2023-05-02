@@ -7,18 +7,31 @@ import '../services/api_service.dart';
 class InternalSensor extends StatefulWidget {
   const InternalSensor({
     super.key,
+    required this.userId,
+    required this.userSite,
   });
+
+  final String userId;
+  final String userSite;
 
   @override
   State<InternalSensor> createState() => _InternalSensorState();
 }
 
 class _InternalSensorState extends State<InternalSensor> {
-  final Future<List<InternalModel>> internals = ApiService.getInternals();
+  Future<List<InternalModel>> _getData() async {
+    final List<InternalModel> internals = await ApiService.getInternals(
+      widget.userId,
+      widget.userSite,
+    );
+
+    return internals;
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: internals,
+      future: _getData(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return InternalWidget(

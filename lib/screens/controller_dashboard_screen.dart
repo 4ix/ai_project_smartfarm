@@ -21,9 +21,14 @@ class ControllerDashboard extends StatefulWidget {
 
 class _ControllerDashboardState extends State<ControllerDashboard> {
   Future<List<dynamic>> _getData() async {
-    final Future<List<InternalModel>> internals = ApiService.getInternals();
-    final Future<List<ExternalModel>> externals =
-        ApiService.getExternals(widget.userId, widget.userSite);
+    final Future<List<InternalModel>> internals = ApiService.getInternals(
+      widget.userId,
+      widget.userSite,
+    );
+    final Future<List<ExternalModel>> externals = ApiService.getExternals(
+      widget.userId,
+      widget.userSite,
+    );
 
     return Future.wait([internals, externals]);
   }
@@ -92,34 +97,22 @@ class ControllerDashboardWidget extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(
                           iconData,
                           size: 30,
                           color: ColorsModel.third,
                         ),
-                        Text(
-                          '${externals[0].weather} / ${externals[0].temperature} ℃',
-                          style: const TextStyle(
-                            fontSize: 15,
-                            color: ColorsModel.third,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Text(
+                            '${externals[0].weather} / ${externals[0].temperature} ℃',
+                            style: const TextStyle(
+                              fontSize: 15,
+                              color: ColorsModel.third,
+                            ),
                           ),
                         ),
-                        // Text(
-                        //   '↑ / ${externals[0].sunrise}',
-                        //   style: const TextStyle(
-                        //     fontSize: 15,
-                        //     color: ColorsModel.third,
-                        //   ),
-                        // ),
-                        // Text(
-                        //   '↓ / ${externals[0].sunset}',
-                        //   style: const TextStyle(
-                        //     fontSize: 15,
-                        //     color: ColorsModel.third,
-                        //   ),
-                        // ),
                       ],
                     ),
                   )

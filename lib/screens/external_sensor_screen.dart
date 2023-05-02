@@ -18,18 +18,19 @@ class ExternalSensor extends StatefulWidget {
 }
 
 class _ExternalSensorState extends State<ExternalSensor> {
-  late Future<List<ExternalModel>> externals;
+  Future<List<ExternalModel>> _getData() async {
+    final List<ExternalModel> externals = await ApiService.getExternals(
+      widget.userId,
+      widget.userSite,
+    );
 
-  @override
-  void initState() {
-    super.initState();
-    externals = ApiService.getExternals('12345S', '02');
+    return externals;
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: externals,
+      future: _getData(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return ExternalWidget(

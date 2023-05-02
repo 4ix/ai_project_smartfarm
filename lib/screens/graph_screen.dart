@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:smartfarm/services/api_service.dart';
 
 class _InternalTemperatureData {
   final DateTime date;
@@ -26,7 +27,14 @@ List<_InternalTemperatureData> _generateData(int max) {
 }
 
 class GraphScreen extends StatefulWidget {
-  const GraphScreen({super.key});
+  const GraphScreen({
+    super.key,
+    required this.userId,
+    required this.userSite,
+  });
+
+  final String userId;
+  final String userSite;
 
   @override
   State<GraphScreen> createState() => _GraphScreenState();
@@ -45,6 +53,9 @@ class _GraphScreenState extends State<GraphScreen> {
   void initState() {
     _yesterdayData = _generateData(20);
     _todayData = _generateData(20);
+
+    ApiService.getHumiditis(widget.userId, widget.userSite);
+
     super.initState();
   }
 

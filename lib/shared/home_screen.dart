@@ -27,6 +27,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  // ignore: unused_field
   late final Future<List<String>> _futureSites;
 
   List<String> _userSites = [];

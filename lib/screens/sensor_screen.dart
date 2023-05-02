@@ -68,7 +68,10 @@ class _SensorScreenState extends State<SensorScreen> {
                     ),
                   );
                 },
-                body: const InternalSensor(),
+                body: InternalSensor(
+                  userId: widget.userId,
+                  userSite: widget.userSite,
+                ),
                 isExpanded: _expanded2,
               ),
               ExpansionPanel(
@@ -86,7 +89,10 @@ class _SensorScreenState extends State<SensorScreen> {
                     ),
                   );
                 },
-                body: const GraphScreen(),
+                body: GraphScreen(
+                  userId: widget.userId,
+                  userSite: widget.userSite,
+                ),
                 isExpanded: _expanded3,
               ),
             ],

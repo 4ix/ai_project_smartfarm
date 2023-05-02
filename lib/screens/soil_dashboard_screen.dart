@@ -21,7 +21,10 @@ class SoilDashboard extends StatefulWidget {
 
 class _SoilDashboardState extends State<SoilDashboard> {
   Future<List<dynamic>> _getData() async {
-    final Future<List<InternalModel>> internals = ApiService.getInternals();
+    final Future<List<InternalModel>> internals = ApiService.getInternals(
+      widget.userId,
+      widget.userSite,
+    );
     final Future<List<ExternalModel>> externals = ApiService.getExternals(
       widget.userId,
       widget.userSite,

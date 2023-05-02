@@ -4,6 +4,6 @@ class InternalModel {
   InternalModel.fromJson(Map<String, dynamic> json)
       : temperature = json['temperature'],
         humidity = json['humidity'],
-        soilCo2 = json['soil_co2'],
+        soilCo2 = json['CO2'],
         soilHumidity = json['soil_humidity'];
 }
