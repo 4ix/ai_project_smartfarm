@@ -1,30 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:smartfarm/services/api_service.dart';
-
-class _InternalTemperatureData {
-  final DateTime date;
-  final double value;
-
-  _InternalTemperatureData({
-    required this.date,
-    required this.value,
-  });
-}
-
-List<_InternalTemperatureData> _generateData(int max) {
-  final random = Random();
-
-  return List.generate(
-    31, // 31개를 만드는데
-    (index) => _InternalTemperatureData(
-      date: DateTime(2023, 4, index + 1),
-      value: random.nextDouble() * max,
-    ),
-  );
-}
 
 class GraphScreen extends StatefulWidget {
   const GraphScreen({
@@ -41,8 +17,8 @@ class GraphScreen extends StatefulWidget {
 }
 
 class _GraphScreenState extends State<GraphScreen> {
-  late List<_InternalTemperatureData> _yesterdayData;
-  late List<_InternalTemperatureData> _todayData;
+  late final List<double> _humiditiesList = [];
+  late final List<double> _co2List = [];
 
   List<Color> gradientColors = [
     const Color(0xff23b6e6),
@@ -50,31 +26,36 @@ class _GraphScreenState extends State<GraphScreen> {
   ];
 
   @override
-  void initState() {
-    _yesterdayData = _generateData(20);
-    _todayData = _generateData(20);
-
-    ApiService.getHumiditis(widget.userId, widget.userSite);
-
+  initState() {
     super.initState();
+    ApiService.getHumiditis(widget.userId, widget.userSite).then((humidities) {
+      for (var i = 0; i < humidities.length; i++) {
+        _humiditiesList.add(humidities[i].humidity);
+      }
+    });
+    ApiService.getCO2s(widget.userId, widget.userSite).then((co2s) {
+      for (var i = 0; i < co2s.length; i++) {
+        _co2List.add(co2s[i].cO2);
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final spots = _yesterdayData
+    final spots = _humiditiesList
         .asMap()
         .entries
         .map((element) => FlSpot(
               element.key.toDouble(),
-              element.value.value,
+              element.value,
             ))
         .toList();
-    final spots2 = _todayData
+    final spots2 = _co2List
         .asMap()
         .entries
         .map((element) => FlSpot(
               element.key.toDouble(),
-              element.value.value,
+              element.value,
             ))
         .toList();
     return Container(
