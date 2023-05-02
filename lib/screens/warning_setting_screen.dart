@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/colors_model.dart';
 
 class WarningSetting extends StatefulWidget {
@@ -10,11 +10,33 @@ class WarningSetting extends StatefulWidget {
 }
 
 class _WarningSettingState extends State<WarningSetting> {
-  bool _isChecked1 = false;
+  late bool _isChecked1 = false;
   String dropdownValueHigh = '27';
   String dropdownValueLow = '17';
   List<String> itemListHigh = ['20', '21', '22', '23', '24', '25', '26', '27'];
   List<String> itemListLow = ['10', '11', '12', '13', '14', '15', '16', '17'];
+  late SharedPreferences prefs;
+
+  Future<void> initPrefs() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isChecked1 = prefs.getBool('isChecked1') ?? false;
+      dropdownValueHigh = prefs.getString('dropdownValueHigh') ?? '27';
+      dropdownValueLow = prefs.getString('dropdownValueLow') ?? '17';
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initPrefs();
+  }
+
+  void _saveValues() async {
+    await prefs.setBool('isChecked1', _isChecked1);
+    await prefs.setString('dropdownValueHigh', dropdownValueHigh);
+    await prefs.setString('dropdownValueLow', dropdownValueLow);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +73,10 @@ class _WarningSettingState extends State<WarningSetting> {
                   inactiveThumbColor: ColorsModel.second,
                   value: _isChecked1,
                   onChanged: (value) {
-                    setState(
-                      () {
-                        _isChecked1 = value;
-                      },
-                    );
+                    setState(() {
+                      _isChecked1 = value;
+                    });
+                    _saveValues();
                   },
                 ),
               ],
@@ -84,8 +105,9 @@ class _WarningSettingState extends State<WarningSetting> {
                     setState(() {
                       dropdownValueHigh = newValue!;
                     });
+                    _saveValues();
                   },
-                )
+                ),
               ],
             ),
             Row(
@@ -112,6 +134,7 @@ class _WarningSettingState extends State<WarningSetting> {
                     setState(() {
                       dropdownValueLow = newValue!;
                     });
+                    _saveValues();
                   },
                 )
               ],

@@ -120,7 +120,8 @@ class _ChangePassWordScreenState extends State<ChangePassWordScreen> {
                         );
 
                         if (response.statusCode == 200) {
-                          showSnackBar(context, const Text('변경 성공'));
+                          showSnackBar(context,
+                              const Text('비밀번호 변경이 성공하였습니다. 다시 로그인 해 주세요. 😊'));
                           Navigator.pushNamedAndRemoveUntil(
                               context, '/', (_) => false);
                           Navigator.push(
@@ -129,7 +130,8 @@ class _ChangePassWordScreenState extends State<ChangePassWordScreen> {
                                 builder: (context) => const LoginScreen()),
                           );
                         } else {
-                          showSnackBar(context, const Text('변경 실패'));
+                          showSnackBar(
+                              context, const Text('비밀번호 변경이 실패했습니다. 😢'));
                         }
                       },
                       style: ElevatedButton.styleFrom(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartfarm/models/internal_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/colors_model.dart';
 import '../services/api_service.dart';
@@ -19,12 +20,60 @@ class InternalSensor extends StatefulWidget {
 }
 
 class _InternalSensorState extends State<InternalSensor> {
+  late SharedPreferences prefs;
+
   Future<List<InternalModel>> _getData() async {
+    prefs = await SharedPreferences.getInstance();
+
     final List<InternalModel> internals = await ApiService.getInternals(
       widget.userId,
       widget.userSite,
     );
 
+    if (prefs.getBool('isChecked1') == true) {
+      double high = double.parse(prefs.get('dropdownValueHigh').toString());
+      double low = double.parse(prefs.get('dropdownValueLow').toString());
+      double now = internals.first.temperature;
+
+      if (now >= high) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text("고온 경보"),
+              content: const Text("내부 온도가 설정한 고온 경보 온도보다 높습니다. 🥵"),
+              actions: [
+                TextButton(
+                  child: const Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
+      if (now < low) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text("저온 경보"),
+              content: const Text("내부 온도가 설정한 저온 경보 온도보다 낮습니다. 🥶"),
+              actions: [
+                TextButton(
+                  child: const Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
     return internals;
   }
 

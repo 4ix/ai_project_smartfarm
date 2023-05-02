@@ -9,6 +9,10 @@
 2. external, internal 연동 완료
 3. graph 연동 완료
 
+- UI 진행
+1. 경보 설정값 저장(shared_preferences)
+2. 고온 및 저온 경보 울리게 설정
+
 ### 2023-04-28(금)
 - UI 화면 추가
 1. CCTV 화면 내 영상 재생

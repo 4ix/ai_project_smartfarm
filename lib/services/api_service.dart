@@ -88,7 +88,6 @@ class ApiService {
         final instance = GraphModel.fromJson(graph);
         cO2sInstance.add(instance);
       }
-      print(cO2sInstance[0].cO2);
       return cO2sInstance;
     }
     throw Error();
