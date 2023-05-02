@@ -5,7 +5,14 @@ import 'package:smartfarm/screens/etc_controller_screen.dart';
 import 'controller_dashboard_screen.dart';
 
 class ControlerScreen extends StatefulWidget {
-  const ControlerScreen({super.key});
+  const ControlerScreen({
+    super.key,
+    required this.userId,
+    required this.userSite,
+  });
+
+  final String userId;
+  final String userSite;
 
   @override
   State<ControlerScreen> createState() => _ControlerScreenState();
@@ -20,7 +27,10 @@ class _ControlerScreenState extends State<ControlerScreen> {
       backgroundColor: ColorsModel.first,
       body: Column(
         children: [
-          const ControllerDashboard(),
+          ControllerDashboard(
+            userId: widget.userId,
+            userSite: widget.userSite,
+          ),
           Padding(
             padding: const EdgeInsets.all(10),
             child: ExpansionPanelList(

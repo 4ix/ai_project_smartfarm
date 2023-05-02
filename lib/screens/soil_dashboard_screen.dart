@@ -6,7 +6,14 @@ import '../models/internal_model.dart';
 import '../services/api_service.dart';
 
 class SoilDashboard extends StatefulWidget {
-  const SoilDashboard({super.key});
+  const SoilDashboard({
+    super.key,
+    required this.userId,
+    required this.userSite,
+  });
+
+  final String userId;
+  final String userSite;
 
   @override
   State<SoilDashboard> createState() => _SoilDashboardState();
@@ -15,7 +22,10 @@ class SoilDashboard extends StatefulWidget {
 class _SoilDashboardState extends State<SoilDashboard> {
   Future<List<dynamic>> _getData() async {
     final Future<List<InternalModel>> internals = ApiService.getInternals();
-    final Future<List<ExternalModel>> externals = ApiService.getExternals();
+    final Future<List<ExternalModel>> externals = ApiService.getExternals(
+      widget.userId,
+      widget.userSite,
+    );
 
     return Future.wait([internals, externals]);
   }

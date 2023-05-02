@@ -8,7 +8,12 @@ import '../services/api_service.dart';
 class ControllerDashboard extends StatefulWidget {
   const ControllerDashboard({
     super.key,
+    required this.userId,
+    required this.userSite,
   });
+
+  final String userId;
+  final String userSite;
 
   @override
   State<ControllerDashboard> createState() => _ControllerDashboardState();
@@ -17,7 +22,8 @@ class ControllerDashboard extends StatefulWidget {
 class _ControllerDashboardState extends State<ControllerDashboard> {
   Future<List<dynamic>> _getData() async {
     final Future<List<InternalModel>> internals = ApiService.getInternals();
-    final Future<List<ExternalModel>> externals = ApiService.getExternals();
+    final Future<List<ExternalModel>> externals =
+        ApiService.getExternals(widget.userId, widget.userSite);
 
     return Future.wait([internals, externals]);
   }
@@ -100,20 +106,20 @@ class ControllerDashboardWidget extends StatelessWidget {
                             color: ColorsModel.third,
                           ),
                         ),
-                        Text(
-                          '↑ / ${externals[0].sunrise}',
-                          style: const TextStyle(
-                            fontSize: 15,
-                            color: ColorsModel.third,
-                          ),
-                        ),
-                        Text(
-                          '↓ / ${externals[0].sunset}',
-                          style: const TextStyle(
-                            fontSize: 15,
-                            color: ColorsModel.third,
-                          ),
-                        ),
+                        // Text(
+                        //   '↑ / ${externals[0].sunrise}',
+                        //   style: const TextStyle(
+                        //     fontSize: 15,
+                        //     color: ColorsModel.third,
+                        //   ),
+                        // ),
+                        // Text(
+                        //   '↓ / ${externals[0].sunset}',
+                        //   style: const TextStyle(
+                        //     fontSize: 15,
+                        //     color: ColorsModel.third,
+                        //   ),
+                        // ),
                       ],
                     ),
                   )

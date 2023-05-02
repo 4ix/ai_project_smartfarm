@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:smartfarm/models/colors_model.dart';
 import 'package:smartfarm/screens/graph_screen.dart';
-
 import 'external_sensor_screen.dart';
 import 'internal_sensor_screen.dart';
 
 class SensorScreen extends StatefulWidget {
-  const SensorScreen({super.key});
+  const SensorScreen({
+    super.key,
+    required this.userId,
+    required this.userSite,
+  });
+
+  final String userId;
+  final String userSite;
 
   @override
   State<SensorScreen> createState() => _SensorScreenState();
@@ -41,7 +47,10 @@ class _SensorScreenState extends State<SensorScreen> {
                     ),
                   );
                 },
-                body: const ExternalSensor(),
+                body: ExternalSensor(
+                  userId: widget.userId,
+                  userSite: widget.userSite,
+                ),
                 isExpanded: _expanded1,
               ),
               ExpansionPanel(

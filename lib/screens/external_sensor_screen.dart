@@ -6,7 +6,12 @@ import '../services/api_service.dart';
 class ExternalSensor extends StatefulWidget {
   const ExternalSensor({
     super.key,
+    required this.userId,
+    required this.userSite,
   });
+
+  final String userId;
+  final String userSite;
 
   @override
   State<ExternalSensor> createState() => _ExternalSensorState();
@@ -18,7 +23,7 @@ class _ExternalSensorState extends State<ExternalSensor> {
   @override
   void initState() {
     super.initState();
-    externals = ApiService.getExternals();
+    externals = ApiService.getExternals('12345S', '02');
   }
 
   @override

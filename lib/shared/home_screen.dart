@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:smartfarm/models/colors_model.dart';
-import 'package:smartfarm/screens/sensor_screen.dart';
-import 'package:smartfarm/screens/controler_screen.dart';
-import 'package:smartfarm/screens/soil_screen.dart';
-import 'package:smartfarm/screens/cctv_screen.dart';
 
+import '../screens/cctv_screen.dart';
+import '../screens/controler_screen.dart';
+import '../screens/sensor_screen.dart';
 import '../screens/settings_screen.dart';
+import '../screens/soil_screen.dart';
 import '../services/api_service.dart';
 import 'menu_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
-    super.key,
+    Key? key,
     required this.userId,
     required this.userName,
     required this.userEmail,
-  });
+  }) : super(key: key);
 
   final String userId;
   final String userName;
@@ -29,21 +29,32 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   late final Future<List<String>> _futureSites;
 
-  final List<Widget> _widgetOptions = <Widget>[
-    const SensorScreen(),
-    const ControlerScreen(),
-    const SoilScreen(),
-    const CctvScreen(),
-  ];
-
   List<String> _userSites = [];
-
+  List<Widget> _widgetOptions = [Container()];
   @override
   void initState() {
     super.initState();
     _futureSites = ApiService.getSites(widget.userId).then((sites) {
       setState(() {
         _userSites = sites;
+        _widgetOptions = [
+          SensorScreen(
+            userId: widget.userId,
+            userSite: sites.first,
+          ),
+          ControlerScreen(
+            userId: widget.userId,
+            userSite: sites.first,
+          ),
+          SoilScreen(
+            userId: widget.userId,
+            userSite: sites.first,
+          ),
+          CctvScreen(
+            userId: widget.userId,
+            userSite: sites.first,
+          ),
+        ];
       });
       print(sites.first);
       return sites;

@@ -24,31 +24,21 @@ class ApiService {
     }
   }
 
-  static Future<List<ExternalModel>> getExternals() async {
+  static Future<List<ExternalModel>> getExternals(id, site) async {
     List<ExternalModel> externalsInstance = [];
 
-    // 더미 Json 긁어오는 방법
-    String jsonString =
-        await rootBundle.loadString('assets/json/externals.json');
-    final jsonResponse = json.decode(jsonString);
-    for (var external in jsonResponse) {
-      final instance = ExternalModel.fromJson(external);
-      externalsInstance.add(instance);
+    // 실제 API 긁어오는 방법 (External)
+    final url = Uri.parse('$baseUrl/$id/$site/$external');
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      final List<dynamic> externals = jsonDecode(response.body);
+      for (var external in externals) {
+        final instance = ExternalModel.fromJson(external);
+        externalsInstance.add(instance);
+      }
+      return externalsInstance;
     }
-    return externalsInstance;
-
-    // // 실제 API 긁어오는 방법 (External)
-    // final url = Uri.parse('$baseUrl/$external');
-    // final response = await http.get(url);
-    // if (response.statusCode == 200) {
-    //   final List<dynamic> externals = jsonDecode(response.body);
-    //   for (var external in externals) {
-    //     final instance = ExternalModel.fromJson(external);
-    //     externalsInstance.add(instance);
-    //   }
-    //   return externalsInstance;
-    // }
-    // throw Error();
+    throw Error();
   }
 
   static Future<List<InternalModel>> getInternals() async {
