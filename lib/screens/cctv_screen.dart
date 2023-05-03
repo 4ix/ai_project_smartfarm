@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartfarm/models/colors_model.dart';
-import 'package:smartfarm/screens/cctv1_screen.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class CctvScreen extends StatefulWidget {
   const CctvScreen({
@@ -17,13 +16,28 @@ class CctvScreen extends StatefulWidget {
 }
 
 class _CctvScreenState extends State<CctvScreen> {
+  late final WebViewController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    late final PlatformWebViewControllerCreationParams params;
+    params = const PlatformWebViewControllerCreationParams();
+
+    final WebViewController controller =
+        WebViewController.fromPlatformCreationParams(params);
+
+    controller
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..loadRequest(Uri.parse(
+          'http://172.16.10.57:5000/FARM/${widget.userId}/${widget.userSite}/cctv'));
+
+    _controller = controller;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: ColorsModel.first,
-      body: Column(
-        children: [CctvOne()],
-      ),
-    );
+    return WebViewWidget(controller: _controller);
   }
 }
