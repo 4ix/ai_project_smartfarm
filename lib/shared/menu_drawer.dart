@@ -72,6 +72,10 @@ class _MenuDrawerState extends State<MenuDrawer> {
                   setState(() {
                     _selectedSiteId = siteId;
                     print(siteId);
+                    showSnackBar(
+                      context,
+                      Text('$siteId 를 선택하셨습니다.'),
+                    );
                   });
                   Navigator.pop(context);
                 },
@@ -83,4 +87,13 @@ class _MenuDrawerState extends State<MenuDrawer> {
       ),
     );
   }
+}
+
+void showSnackBar(BuildContext context, text) {
+  final snackBar = SnackBar(
+    content: text,
+    backgroundColor: ColorsModel.third,
+  );
+
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
