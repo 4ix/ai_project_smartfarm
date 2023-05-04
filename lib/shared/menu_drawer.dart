@@ -71,7 +71,6 @@ class _MenuDrawerState extends State<MenuDrawer> {
                 onTap: () {
                   setState(() {
                     _selectedSiteId = siteId;
-                    print(siteId);
                     showSnackBar(
                       context,
                       Text('$siteId 를 선택하셨습니다.'),

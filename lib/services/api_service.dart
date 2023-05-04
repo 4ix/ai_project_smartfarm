@@ -22,7 +22,7 @@ class ApiService {
       final siteIds = List<String>.from(json['site_ids']);
       return siteIds;
     } else {
-      throw Exception('Failed to load sites');
+      throw Exception('사이트 로드 실패');
     }
   }
 
