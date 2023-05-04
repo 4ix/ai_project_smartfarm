@@ -29,7 +29,7 @@ class _EtcControllerScreenState extends State<EtcControllerScreen> {
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
-                        '환풍기 세기',
+                        '환풍기 제어',
                         style: TextStyle(
                           fontSize: 20,
                           color: ColorsModel.third,
@@ -62,7 +62,7 @@ class _EtcControllerScreenState extends State<EtcControllerScreen> {
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
-                        '환풍기 각도',
+                        '환풍구 제어',
                         style: TextStyle(
                           fontSize: 20,
                           color: ColorsModel.third,
