@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smartfarm/models/colors_model.dart';
-import 'package:smartfarm/screens/etc_controller_screen.dart';
+import 'package:smartfarm/widgets/etc_controller_screen.dart';
 
-import 'controller_dashboard_screen.dart';
+import '../widgets/controller_dashboard_screen.dart';
 
 class ControlerScreen extends StatefulWidget {
   const ControlerScreen({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartfarm/models/colors_model.dart';
-import 'package:smartfarm/screens/soil_dashboard_screen.dart';
+import 'package:smartfarm/widgets/soil_dashboard_screen.dart';
 
 class SoilScreen extends StatefulWidget {
   const SoilScreen({

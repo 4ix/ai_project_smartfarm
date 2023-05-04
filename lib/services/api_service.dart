@@ -7,13 +7,12 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
   // 개발되는 api 주소 넣기
-  static const String baseUrl = 'http://172.16.10.57:5000/FARM';
+  static const String baseUrl = 'http://43.201.161.172:5000/FARM';
+  static const String baseUrl2 = 'http://172.16.10.57:5000/FARM';
   static const String external = 'MONITORING/EXTERNAL_SENSOR';
   static const String internal = 'MONITORING/INTERNAL_SENSOR';
   static const String humidity = 'MONITORING/INTERNAL_SENSOR/humidity/GRAPH';
   static const String cO2 = 'MONITORING/INTERNAL_SENSOR/CO2/GRAPH';
-
-  static const String baseLogin = 'http://172.16.10.57:5000/farm/v1/login';
 
   static Future<List<String>> getSites(id) async {
     final url = Uri.parse('$baseUrl/$id/sites');
@@ -47,7 +46,7 @@ class ApiService {
   static Future<List<InternalModel>> getInternals(id, site) async {
     List<InternalModel> internalsInstance = [];
 
-    final url = Uri.parse('$baseUrl/$id/$site/$internal');
+    final url = Uri.parse('$baseUrl2/$id/$site/$internal'); // 외부 api 주소로 바꿔야함
     final response = await http.get(url);
     if (response.statusCode == 200) {
       final List<dynamic> externals =

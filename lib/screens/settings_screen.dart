@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:smartfarm/models/colors_model.dart';
 import 'package:smartfarm/screens/login_screen.dart';
-import 'package:smartfarm/screens/warning_setting_screen.dart';
+import 'package:smartfarm/widgets/warning_setting_screen.dart';
 
-import '../shared/change_password_screen.dart';
+import 'change_password_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({

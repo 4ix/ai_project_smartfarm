@@ -119,7 +119,7 @@ class LoginWidget extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () async {
                     final url =
-                        Uri.parse('http://172.16.10.57:5000/farm/v1/login');
+                        Uri.parse('http://43.201.161.172:5000/farm/v1/login');
                     final response = await http.post(
                       url,
                       body: {

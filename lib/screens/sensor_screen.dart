@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smartfarm/models/colors_model.dart';
-import 'package:smartfarm/screens/graph_screen.dart';
-import 'external_sensor_screen.dart';
-import 'internal_sensor_screen.dart';
+import 'package:smartfarm/widgets/graph_screen.dart';
+import '../widgets/external_sensor_screen.dart';
+import '../widgets/internal_sensor_screen.dart';
 
 class SensorScreen extends StatefulWidget {
   const SensorScreen({

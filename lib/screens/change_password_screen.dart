@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/colors_model.dart';
-import '../screens/login_screen.dart';
+import 'login_screen.dart';
 
 class ChangePassWordScreen extends StatefulWidget {
   const ChangePassWordScreen({
@@ -109,7 +109,7 @@ class _ChangePassWordScreenState extends State<ChangePassWordScreen> {
                       onPressed: () async {
                         // password API 호출하는거로 변경해야 함
                         final url = Uri.parse(
-                            'http://172.16.10.57:5000/farm/v1/${widget.userId}/change_password');
+                            'http://43.201.161.172:5000/farm/v1/${widget.userId}/change_password');
                         final response = await http.post(
                           url,
                           body: {
