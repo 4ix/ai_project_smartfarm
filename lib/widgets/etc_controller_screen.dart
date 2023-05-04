@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:smartfarm/services/api_service.dart';
 import '../models/colors_model.dart';
 
 class EtcControllerScreen extends StatefulWidget {
-  const EtcControllerScreen({super.key});
+  const EtcControllerScreen({
+    super.key,
+    required this.userId,
+    required this.userSite,
+  });
+
+  final String userId;
+  final String userSite;
 
   @override
   State<EtcControllerScreen> createState() => _EtcControllerScreenState();
@@ -44,6 +52,13 @@ class _EtcControllerScreenState extends State<EtcControllerScreen> {
                         setState(
                           () {
                             _isChecked1 = value;
+                            if (_isChecked1 == true) {
+                              ApiService.getEtc1(
+                                  widget.userId, widget.userSite, 'True');
+                            } else {
+                              ApiService.getEtc1(
+                                  widget.userId, widget.userSite, 'False');
+                            }
                           },
                         );
                       },

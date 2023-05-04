@@ -50,7 +50,10 @@ class _ControlerScreenState extends State<ControlerScreen> {
                       ),
                     );
                   },
-                  body: const EtcControllerScreen(),
+                  body: EtcControllerScreen(
+                    userId: widget.userId,
+                    userSite: widget.userSite,
+                  ),
                   isExpanded: _expanded1,
                 ),
               ],

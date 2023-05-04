@@ -13,6 +13,9 @@ class ApiService {
   static const String internal = 'MONITORING/INTERNAL_SENSOR';
   static const String humidity = 'humidity/GRAPH';
   static const String cO2 = 'CO2/GRAPH';
+  static const String etc1 = 'CONTROL/ETC/ETC_1';
+  static const String etc2 = 'CONTROL/ETC/ETC_2';
+  static const String etc3 = 'CONTROL/ETC/ETC_3';
 
   static Future<List<String>> getSites(id) async {
     final url = Uri.parse('$baseUrl/$id/sites');
@@ -90,5 +93,35 @@ class ApiService {
       return cO2sInstance;
     }
     throw Error();
+  }
+
+  static Future<String> getEtc1(id, site, status) async {
+    final url = Uri.parse('$baseUrl2/$id/$site/$etc1');
+    final response = await http.post(
+      url,
+      body: {'status': status},
+    );
+    print(response.body);
+    return response.body;
+  }
+
+  static Future<String> getEtc2(id, site, status) async {
+    final url = Uri.parse('$baseUrl2/$id/$site/$etc2');
+    final response = await http.post(
+      url,
+      body: {'status': status},
+    );
+    print(response.body);
+    return response.body;
+  }
+
+  static Future<String> getEtc3(id, site, status) async {
+    final url = Uri.parse('$baseUrl2/$id/$site/$etc3');
+    final response = await http.post(
+      url,
+      body: {'status': status},
+    );
+    print(response.body);
+    return response.body;
   }
 }
