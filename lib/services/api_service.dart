@@ -11,8 +11,8 @@ class ApiService {
   static const String baseUrl2 = 'http://172.16.10.57:5000/FARM';
   static const String external = 'MONITORING/EXTERNAL_SENSOR';
   static const String internal = 'MONITORING/INTERNAL_SENSOR';
-  static const String humidity = 'MONITORING/INTERNAL_SENSOR/humidity/GRAPH';
-  static const String cO2 = 'MONITORING/INTERNAL_SENSOR/CO2/GRAPH';
+  static const String humidity = 'humidity/GRAPH';
+  static const String cO2 = 'CO2/GRAPH';
 
   static Future<List<String>> getSites(id) async {
     final url = Uri.parse('$baseUrl/$id/sites');
@@ -63,7 +63,7 @@ class ApiService {
   static Future<List<GraphModel>> getHumiditis(id, site) async {
     List<GraphModel> humiditiesInstance = [];
 
-    final url = Uri.parse('$baseUrl/$id/$site/$humidity');
+    final url = Uri.parse('$baseUrl/$id/$site/$internal/$humidity');
     final response = await http.get(url);
     if (response.statusCode == 200) {
       final List<dynamic> graphs = jsonDecode(utf8.decode(response.bodyBytes));
@@ -79,7 +79,7 @@ class ApiService {
   static Future<List<GraphModel>> getCO2s(id, site) async {
     List<GraphModel> cO2sInstance = [];
 
-    final url = Uri.parse('$baseUrl/$id/$site/$cO2');
+    final url = Uri.parse('$baseUrl/$id/$site/$internal/$cO2');
     final response = await http.get(url);
     if (response.statusCode == 200) {
       final List<dynamic> graphs = jsonDecode(utf8.decode(response.bodyBytes));
