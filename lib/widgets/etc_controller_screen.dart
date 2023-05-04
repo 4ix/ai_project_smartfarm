@@ -92,6 +92,13 @@ class _EtcControllerScreenState extends State<EtcControllerScreen> {
                         setState(
                           () {
                             _isChecked2 = value;
+                            if (_isChecked2 == true) {
+                              ApiService.getEtc2(
+                                  widget.userId, widget.userSite, 'True');
+                            } else {
+                              ApiService.getEtc2(
+                                  widget.userId, widget.userSite, 'False');
+                            }
                           },
                         );
                       },
@@ -125,6 +132,13 @@ class _EtcControllerScreenState extends State<EtcControllerScreen> {
                         setState(
                           () {
                             _isChecked3 = value;
+                            if (_isChecked3 == true) {
+                              ApiService.getEtc3(
+                                  widget.userId, widget.userSite, 'True');
+                            } else {
+                              ApiService.getEtc3(
+                                  widget.userId, widget.userSite, 'False');
+                            }
                           },
                         );
                       },

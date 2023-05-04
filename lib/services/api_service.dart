@@ -101,7 +101,6 @@ class ApiService {
       url,
       body: {'status': status},
     );
-    print(response.body);
     return response.body;
   }
 
@@ -111,7 +110,6 @@ class ApiService {
       url,
       body: {'status': status},
     );
-    print(response.body);
     return response.body;
   }
 
@@ -121,7 +119,6 @@ class ApiService {
       url,
       body: {'status': status},
     );
-    print(response.body);
     return response.body;
   }
 }

@@ -5,7 +5,8 @@
 ## 진행사항
 ### 2023-05-04(목)
 - API 연동
-1. public api 주소 적용 (internal만 남음)
+1. public api 주소 적용 (internal, etc 적용해야함)
+2. 기타 제어 api 적용
 
 ### 2023-05-03(수)
 - apk build 테스트
