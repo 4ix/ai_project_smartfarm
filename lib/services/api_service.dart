@@ -8,7 +8,6 @@ import 'package:http/http.dart' as http;
 class ApiService {
   // 개발되는 api 주소 넣기
   static const String baseUrl = 'http://43.201.161.172:5000/FARM';
-  static const String baseUrl2 = 'http://172.16.10.57:5000/FARM';
   static const String external = 'MONITORING/EXTERNAL_SENSOR';
   static const String internal = 'MONITORING/INTERNAL_SENSOR';
   static const String humidity = 'humidity/GRAPH';
@@ -49,7 +48,7 @@ class ApiService {
   static Future<List<InternalModel>> getInternals(id, site) async {
     List<InternalModel> internalsInstance = [];
 
-    final url = Uri.parse('$baseUrl2/$id/$site/$internal'); // 외부 api 주소로 바꿔야함
+    final url = Uri.parse('$baseUrl/$id/$site/$internal'); // 외부 api 주소로 바꿔야함
     final response = await http.get(url);
     if (response.statusCode == 200) {
       final List<dynamic> externals =
@@ -96,7 +95,7 @@ class ApiService {
   }
 
   static Future<String> getEtc1(id, site, status) async {
-    final url = Uri.parse('$baseUrl2/$id/$site/$etc1');
+    final url = Uri.parse('$baseUrl/$id/$site/$etc1');
     final response = await http.post(
       url,
       body: {'status': status},
@@ -105,7 +104,7 @@ class ApiService {
   }
 
   static Future<String> getEtc2(id, site, status) async {
-    final url = Uri.parse('$baseUrl2/$id/$site/$etc2');
+    final url = Uri.parse('$baseUrl/$id/$site/$etc2');
     final response = await http.post(
       url,
       body: {'status': status},
@@ -114,11 +113,12 @@ class ApiService {
   }
 
   static Future<String> getEtc3(id, site, status) async {
-    final url = Uri.parse('$baseUrl2/$id/$site/$etc3');
+    final url = Uri.parse('$baseUrl/$id/$site/$etc3');
     final response = await http.post(
       url,
       body: {'status': status},
     );
+    // print(response.body);
     return response.body;
   }
 }

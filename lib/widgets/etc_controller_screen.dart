@@ -55,9 +55,13 @@ class _EtcControllerScreenState extends State<EtcControllerScreen> {
                             if (_isChecked1 == true) {
                               ApiService.getEtc1(
                                   widget.userId, widget.userSite, 'True');
+                              showSnackBar(
+                                  context, const Text('환풍기 작동 요청 하였습니다. 🙏'));
                             } else {
                               ApiService.getEtc1(
                                   widget.userId, widget.userSite, 'False');
+                              showSnackBar(
+                                  context, const Text('환풍기 중지 요청 하였습니다. 🙏'));
                             }
                           },
                         );
@@ -95,9 +99,13 @@ class _EtcControllerScreenState extends State<EtcControllerScreen> {
                             if (_isChecked2 == true) {
                               ApiService.getEtc2(
                                   widget.userId, widget.userSite, 'True');
+                              showSnackBar(
+                                  context, const Text('환풍구 열기 요청 하였습니다. 🙏'));
                             } else {
                               ApiService.getEtc2(
                                   widget.userId, widget.userSite, 'False');
+                              showSnackBar(
+                                  context, const Text('환풍구 닫기 요청 하였습니다. 🙏'));
                             }
                           },
                         );
@@ -128,16 +136,20 @@ class _EtcControllerScreenState extends State<EtcControllerScreen> {
                       activeColor: ColorsModel.third,
                       inactiveThumbColor: ColorsModel.second,
                       value: _isChecked3,
-                      onChanged: (value) {
+                      onChanged: (value) async {
                         setState(
                           () {
                             _isChecked3 = value;
                             if (_isChecked3 == true) {
                               ApiService.getEtc3(
                                   widget.userId, widget.userSite, 'True');
+                              showSnackBar(
+                                  context, const Text('조도 센서 작동 요청 하였습니다. 🙏'));
                             } else {
                               ApiService.getEtc3(
                                   widget.userId, widget.userSite, 'False');
+                              showSnackBar(
+                                  context, const Text('조도 센서 중지 요청 하였습니다. 🙏'));
                             }
                           },
                         );
@@ -152,4 +164,13 @@ class _EtcControllerScreenState extends State<EtcControllerScreen> {
       ],
     );
   }
+}
+
+void showSnackBar(BuildContext context, text) {
+  final snackBar = SnackBar(
+    content: text,
+    backgroundColor: ColorsModel.third,
+  );
+
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }

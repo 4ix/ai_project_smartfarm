@@ -31,7 +31,7 @@ class _CctvScreenState extends State<CctvScreen> {
     controller
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..loadRequest(Uri.parse(
-          'http://172.16.10.57:5000/FARM/${widget.userId}/${widget.userSite}/cctv'));
+          'http://43.201.161.172:5000/FARM/${widget.userId}/${widget.userSite}/cctv'));
 
     _controller = controller;
   }
