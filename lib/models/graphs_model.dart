@@ -1,6 +1,6 @@
 class GraphModel {
-  late final dynamic humidity, cO2;
+  late final dynamic humidity, soilHumidity;
   GraphModel.fromJson(Map<String, dynamic> json)
       : humidity = json['humidity'],
-        cO2 = json['CO2'];
+        soilHumidity = json['soil_humidity'];
 }

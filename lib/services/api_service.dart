@@ -11,7 +11,7 @@ class ApiService {
   static const String external = 'MONITORING/EXTERNAL_SENSOR';
   static const String internal = 'MONITORING/INTERNAL_SENSOR';
   static const String humidity = 'humidity/GRAPH';
-  static const String cO2 = 'CO2/GRAPH';
+  static const String soilHumidity = 'soil_humidity/GRAPH';
   static const String etc1 = 'CONTROL/ETC/ETC_1';
   static const String etc2 = 'CONTROL/ETC/ETC_2';
   static const String etc3 = 'CONTROL/ETC/ETC_3';
@@ -78,18 +78,18 @@ class ApiService {
     throw Error();
   }
 
-  static Future<List<GraphModel>> getCO2s(id, site) async {
-    List<GraphModel> cO2sInstance = [];
+  static Future<List<GraphModel>> getSoilHumiditis(id, site) async {
+    List<GraphModel> shumiditiesInstance = [];
 
-    final url = Uri.parse('$baseUrl/$id/$site/$internal/$cO2');
+    final url = Uri.parse('$baseUrl/$id/$site/$internal/$soilHumidity');
     final response = await http.get(url);
     if (response.statusCode == 200) {
       final List<dynamic> graphs = jsonDecode(utf8.decode(response.bodyBytes));
       for (var graph in graphs) {
         final instance = GraphModel.fromJson(graph);
-        cO2sInstance.add(instance);
+        shumiditiesInstance.add(instance);
       }
-      return cO2sInstance;
+      return shumiditiesInstance;
     }
     throw Error();
   }

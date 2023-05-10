@@ -18,7 +18,7 @@ class GraphScreen extends StatefulWidget {
 
 class _GraphScreenState extends State<GraphScreen> {
   late final List<double> _humiditiesList = [];
-  late final List<double> _co2List = [];
+  late final List<double> _shumiditiesList = [];
 
   List<Color> gradientColors = [
     const Color(0xff23b6e6),
@@ -33,9 +33,10 @@ class _GraphScreenState extends State<GraphScreen> {
         _humiditiesList.add(humidities[i].humidity);
       }
     });
-    ApiService.getCO2s(widget.userId, widget.userSite).then((co2s) {
-      for (var i = 0; i < co2s.length; i++) {
-        _co2List.add(co2s[i].cO2);
+    ApiService.getSoilHumiditis(widget.userId, widget.userSite)
+        .then((shumidities) {
+      for (var i = 0; i < shumidities.length; i++) {
+        _shumiditiesList.add(shumidities[i].soilHumidity);
       }
     });
   }
@@ -50,7 +51,7 @@ class _GraphScreenState extends State<GraphScreen> {
               element.value,
             ))
         .toList();
-    final spots2 = _co2List
+    final spots2 = _shumiditiesList
         .asMap()
         .entries
         .map((element) => FlSpot(
