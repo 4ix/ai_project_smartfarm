@@ -13,7 +13,6 @@ class ControlerScreen extends StatefulWidget {
 
   final String userId;
   final String userSite;
-
   @override
   State<ControlerScreen> createState() => _ControlerScreenState();
 }

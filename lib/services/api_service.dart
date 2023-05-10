@@ -48,7 +48,7 @@ class ApiService {
   static Future<List<InternalModel>> getInternals(id, site) async {
     List<InternalModel> internalsInstance = [];
 
-    final url = Uri.parse('$baseUrl/$id/$site/$internal'); // 외부 api 주소로 바꿔야함
+    final url = Uri.parse('$baseUrl/$id/$site/$internal');
     final response = await http.get(url);
     if (response.statusCode == 200) {
       final List<dynamic> externals =
@@ -118,7 +118,6 @@ class ApiService {
       url,
       body: {'status': status},
     );
-    // print(response.body);
     return response.body;
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smartfarm/services/api_service.dart';
 import '../models/colors_model.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class EtcControllerScreen extends StatefulWidget {
   const EtcControllerScreen({
@@ -20,6 +22,35 @@ class _EtcControllerScreenState extends State<EtcControllerScreen> {
   bool _isChecked1 = false;
   bool _isChecked2 = false;
   bool _isChecked3 = false;
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      getControllerStatus();
+    });
+  }
+
+  void getControllerStatus() async {
+    final url = Uri.parse(
+        'http://43.201.161.172:5000/FARM/${widget.userSite}/MONITORING/CONTROL/ETC');
+    final response = await http.get(url);
+    final json = jsonDecode(response.body);
+    print(json);
+    final etc1 = json['fan'];
+    final etc2 = json['door'];
+    final etc3 = json['led'];
+    if (etc1 == '1') {
+      _isChecked1 = true;
+    }
+    if (etc2 == '1') {
+      _isChecked2 = true;
+    }
+    if (etc3 == '1') {
+      _isChecked3 = true;
+    }
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
