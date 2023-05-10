@@ -64,6 +64,7 @@ class _GraphScreenState extends State<GraphScreen> {
       height: MediaQuery.of(context).size.height * 0.5,
       child: LineChart(
           LineChartData(
+            maxY: 80,
             lineBarsData: [
               LineChartBarData(
                 spots: spots,
